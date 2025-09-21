@@ -1,0 +1,33 @@
+{
+  "name": "your-theme",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint:js": "eslint './**/*.{ts,tsx}' --fix",
+    "lint:scss": "stylelint '**/*.scss' --fix",
+    "lint": "npm run lint:js && npm run lint:scss"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "sass": "^1.93.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.6"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.44.0",
+    "animejs": "^4.1.3",
+    "eslint": "^9.36.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "lucide": "^0.544.0",
+    "stylelint": "^16.24.0",
+    "stylelint-config-standard-scss": "^16.0.0",
+    "stylelint-order": "^7.0.0",
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-live-reload": "^3.0.5"
+  }
+}

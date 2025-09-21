@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowJs": false,
+    "checkJs": false,
+    "baseUrl": ".",
+    "paths": {
+      "vite-plugin-eslint": ["node_modules/vite-plugin-eslint/dist/index.d.ts"],
+      "@ts/*": ["src/ts/*"],
+      "@scss/*": ["src/scss/*"]
+    }
+  },
+  "include": ["src/ts/**/*", "src/scss/**/*", "vite.config.ts"]
+}

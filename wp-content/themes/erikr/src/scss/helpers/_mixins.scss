@@ -1,0 +1,92 @@
+@use "sass:map";
+@use "sass:list";
+@use "sass:meta";
+@use "sass:color";
+
+$theme-map: null !default;
+
+/// Mixin for background with opacity
+/// @param {Color} $color - SCSS color variable
+/// @param {Number} $opacity - 0 to 1
+@mixin bg-opacity($color, $opacity: 1) {
+  background-color: rgba($color, $opacity);
+}
+
+/// Mixin for responsive breakpoints
+/// @param {String|Number|List} $size - breakpoint name (xs, sm, md, lg, xl), pixel value (e.g., 768px), or list of two breakpoint names (e.g., (sm, lg))
+/// @param {String} $type - 'min' for min-width, 'max' for max-width (default: 'max')
+$breakpoints: (
+  xs: 375px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+@mixin breakpoint($size, $type: max) {
+  @if meta.type-of($size) == 'number' {
+    @if $type == max {
+      @media (max-width: ($size - 1px)) {
+        @content;
+      }
+    } @else if $type == min {
+      @media (min-width: $size) {
+        @content;
+      }
+    } @else {
+      @warn "Invalid type: #{$type}. Use 'min' or 'max'.";
+    }
+  } @else if meta.type-of($size) == 'string' and map.has-key($breakpoints, $size) {
+    $value: map.get($breakpoints, $size);
+
+    @if $type == max {
+      @media (max-width: ($value - 1px)) {
+        @content;
+      }
+    } @else if $type == min {
+      @media (min-width: $value) {
+        @content;
+      }
+    } @else {
+      @warn "Invalid type: #{$type}. Use 'min' or 'max'.";
+    }
+  } @else if meta.type-of($size) == 'list' and list.length($size) == 2 {
+    $min: list.nth($size, 1);
+    $max: list.nth($size, 2);
+
+    @if map.has-key($breakpoints, $min) and map.has-key($breakpoints, $max) {
+      @media (min-width: map.get($breakpoints, $min)) and (max-width: (map.get($breakpoints, $max) - 1px)) {
+        @content;
+      }
+    } @else {
+      @warn "One or both breakpoints are invalid. Available: #{map.keys($breakpoints)}";
+    }
+  } @else {
+    @warn "Invalid breakpoint: #{$size}. Available: #{map.keys($breakpoints)} or provide a range as (min, max).";
+  }
+}
+
+// Mixin for theming
+@function themed($key) {
+  @return map.get($theme-map, $key);
+}
+
+@mixin themify($themes) {
+  @each $theme, $map in $themes {
+    [data-theme="#{$theme}"] & {
+      $theme-map: $map !global;
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@mixin themify-self($themes) {
+  @each $theme, $map in $themes {
+    &[data-theme="#{$theme}"] {
+      $theme-map: $map !global;
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}

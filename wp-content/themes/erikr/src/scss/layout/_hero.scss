@@ -1,0 +1,46 @@
+@use '@scss/base/variables' as *;
+@use '@scss/helpers/mixins' as *;
+
+.header-hero {
+  &__inner {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+
+    @include breakpoint('md') {
+      flex-direction: column;
+      text-align: center;
+      gap: 4rem;
+    }
+  }
+
+  &__left {
+    width: 610px;
+  }
+
+  &__title {
+    margin-bottom: 2.4rem;
+  }
+
+  &__subtitle {
+    margin-bottom: 3.2rem;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+
+    @include breakpoint('md') {
+      justify-content: center;
+    }
+  }
+
+  &__image {
+    display: block;
+    max-width: 380px !important;
+    width: 100%;
+    height: auto;
+  }
+}

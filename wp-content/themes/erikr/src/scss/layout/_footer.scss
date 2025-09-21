@@ -1,0 +1,62 @@
+@use '@scss/base/variables' as *;
+@use '@scss/helpers/mixins' as *;
+
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.8rem 4.4rem 2rem;
+  backdrop-filter: blur(16px);
+  border-radius: 4rem;
+  box-shadow: 0 2px 20px -8px rgb(65 78 78 / 25%);
+
+  @include themify($themes) {
+    @include bg-opacity(themed(elevated-background), $opacity-light);
+  }
+
+  .site-branding {
+    align-items: center;
+    margin-bottom: 2.2rem;
+
+    > .site-title {
+        font-size: 2.8rem;
+    }
+
+    > .site-description {
+        font-size: 1.4rem;
+    }
+  }
+}
+
+.social-menu {
+    display: flex;
+    align-items: center;
+
+    gap: 1rem;
+    
+    margin-bottom: 2.8rem;
+}
+
+.social-icon svg {
+    width: 2.4rem;
+    height: 2.4rem;
+    @include themify($themes) {
+        color: themed(text-blue);
+    }
+}
+
+.footer-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    gap: 1.2rem;
+    margin-bottom: 4.5rem;
+}
+
+.site-credits {
+    color: $text-blue;
+}

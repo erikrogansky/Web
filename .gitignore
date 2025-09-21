@@ -1,0 +1,78 @@
+# ── Node/npm/pnpm
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# ── Env & local config
+.env
+.env.local
+.env.*.local
+
+# ── Logs & PIDs
+*.log
+logs/
+wp-content/debug.log
+*.pid
+*.pid.lock
+*.seed
+
+# ── OS junk
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# ── WordPress config (keep sample)
+wp-config.php
+wp-config-*.php
+!wp-config-sample.php
+.htaccess
+web.config
+robots.txt
+
+# ── WordPress generated / temp
+wp-content/upgrade/
+wp-content/uploads/
+wp-content/cache/
+wp-content/backups/
+wp-content/ai1wm-backups/
+wp-content/ai1wm-temp/
+wp-content/advanced-cache.php
+wp-content/object-cache.php
+wp-content/wp-cache-config.php
+wp-content/wflogs/
+
+# ── Ignore default WP themes
+wp-content/themes/twenty*/
+
+# ── Composer (commit composer.lock for reproducible installs)
+vendor/
+# composer.lock  ← intentionally NOT ignored
+
+# ── Build artifacts
+dist/
+build/
+.cache/
+.temporary/
+.tmp/
+public/dist/
+
+# ── IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Misc backups
+*.bak
+*.old
+*.orig
+*.rej
+
+# ── Sitemaps (usually generated)
+sitemap.xml
+sitemap.xml.gz
