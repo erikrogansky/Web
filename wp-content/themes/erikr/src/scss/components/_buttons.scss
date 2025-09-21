@@ -2,13 +2,29 @@
 @use "@scss/helpers/mixins" as *;
 
 .btn {
+    font-family: 'SN Pro', sans-serif;
+    text-align: center;
     border-radius: 100px;
     text-decoration: none;
     font-size: 1.6rem;
     font-weight: 900;
     padding: 12px 20px;
     transition: all 0.3s ease;
+    background: transparent;
+    border: none;
+    outline: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    gap: 0.6rem;
+
+    &:not(.btn--icon, .btn--icon-circle) {
+        svg {
+            margin-block: -6px;
+        }
+    }
 
     &--primary {
         @include themify($themes) {
@@ -95,5 +111,9 @@
         line-height: 0;
         border-radius: 50%;
         padding: 9px;
+    }
+
+    &--fill-width {
+        width: 100%;
     }
 }

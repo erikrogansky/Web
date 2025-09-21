@@ -1,8 +1,9 @@
-import { createIcons, MoonStar, Sun } from "lucide";
+import { createIcons, MoonStar, Sun, Menu } from "lucide";
 
 createIcons({
     icons: {
         MoonStar,
         Sun,
+        Menu,
     },
 });

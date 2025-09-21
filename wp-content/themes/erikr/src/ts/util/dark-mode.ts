@@ -1,11 +1,20 @@
 import { animate } from "animejs";
 
 const toggle = document.getElementById("dark-mode-toggle");
+const mobileToggle = document.getElementById("dark-mode-toggle-mobile");
+
 const iconSun = document.getElementById(
     "dark-mode-toggle-icon-sun",
 ) as HTMLElement | null;
 const iconMoon = document.getElementById(
     "dark-mode-toggle-icon-moon",
+) as HTMLElement | null;
+
+const iconSunMobile = document.getElementById(
+    "dark-mode-toggle-icon-sun-mobile",
+) as HTMLElement | null;
+const iconMoonMobile = document.getElementById(
+    "dark-mode-toggle-icon-moon-mobile",
 ) as HTMLElement | null;
 
 let animating = false;
@@ -53,7 +62,7 @@ function setTheme(next: "light" | "dark") {
     localStorage.setItem("theme", next);
 }
 
-toggle?.addEventListener("click", () => {
+const handleToggle = () => {
     if (animating) return;
     animating = true;
 
@@ -67,21 +76,42 @@ toggle?.addEventListener("click", () => {
             show(iconMoon);
             animating = false;
         });
+        hideThen(iconSunMobile, () => {
+            setTheme("light");
+            show(iconMoonMobile);
+            animating = false;
+        });
     } else {
         hideThen(iconMoon, () => {
             setTheme("dark");
             show(iconSun);
             animating = false;
         });
+        hideThen(iconMoonMobile, () => {
+            setTheme("dark");
+            show(iconSunMobile);
+            animating = false;
+        });
     }
-});
+};
+
+if (toggle) {
+    toggle.addEventListener("click", handleToggle);
+}
+if (mobileToggle) {
+    mobileToggle.addEventListener("click", handleToggle);
+}
 
 const saved = (localStorage.getItem("theme") as "light" | "dark") || "light";
 setTheme(saved);
 if (saved === "light") {
     instantlyShow(iconMoon);
     instantlyHide(iconSun);
+    instantlyShow(iconMoonMobile);
+    instantlyHide(iconSunMobile);
 } else {
     instantlyShow(iconSun);
     instantlyHide(iconMoon);
+    instantlyShow(iconSunMobile);
+    instantlyHide(iconMoonMobile);
 }

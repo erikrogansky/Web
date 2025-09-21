@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (headerBranding) headerBranding.style.width = "";
         if (headerCtas) headerCtas.style.width = "";
 
+        if (window.innerWidth < 1160) return;
+
         const brandingWidth = headerBranding ? headerBranding.offsetWidth : 0;
         const ctasWidth = headerCtas ? headerCtas.offsetWidth : 0;
         const maxWidth = Math.max(brandingWidth, ctasWidth);
