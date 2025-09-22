@@ -26,7 +26,7 @@
             <button id="dark-mode-toggle" class="btn btn--outline-primary btn--icon-circle dark-mode-toggle" aria-pressed="false" aria-label="Toggle Dark Mode">
                 <i id="dark-mode-toggle-icon-moon" data-lucide="moon-star"></i>
                 <i id="dark-mode-toggle-icon-sun" data-lucide="sun"></i>
-                <span class="visually-hidden">Toggle Dark Mode</span>
+                <span id="dark-mode-toggle-label" class="visually-hidden">Toggle Dark Mode</span>
             </button>
             <a class="btn btn--primary contact-button" href="/contact">Get In Touch</a>
             <button class="btn btn--icon menu-icon"><i data-lucide="menu"></i></button>
@@ -55,7 +55,7 @@
             <button id="dark-mode-toggle-mobile" class="btn btn--outline-primary btn--fill-width dark-mode-toggle-mobile" aria-pressed="false" aria-label="Toggle Dark Mode">
                 <i id="dark-mode-toggle-icon-moon-mobile" data-lucide="moon-star"></i>
                 <i id="dark-mode-toggle-icon-sun-mobile" data-lucide="sun"></i>
-                Toggle Dark Mode
+                <span id="dark-mode-toggle-label-mobile">Toggle Dark Mode</span>
             </button>
         </div>
     </div>

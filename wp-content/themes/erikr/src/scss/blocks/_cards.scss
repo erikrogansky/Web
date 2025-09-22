@@ -1,0 +1,53 @@
+@use '../base/variables' as *;
+@use '../helpers/mixins' as *;
+
+.cards {
+  &__title { text-align: center; margin-bottom: 4.2rem; }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    margin-bottom: 4.4rem;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    border-radius: 24px;
+
+    &--bg {
+      padding: 4.2rem 1.2rem;
+      @include themify($themes) {
+        background: rgba(themed(elevated-background), $opacity-light);
+        border: 1px solid themed(stroke-blue-regular);
+        box-shadow: 0 2px 20px -8px rgba(65, 78, 78, 0.25);
+      }
+    }
+
+    &-title {
+      margin: 0;
+      text-align: center;
+    }
+
+    &-desc {
+        p { margin: 0; }
+        text-align: center;
+    }
+  }
+
+  &__icon {
+    width: 112px; height: 112px; flex: 0 0 112px;
+    svg, img { width: 100% !important; height: auto; display: block; }
+  }
+
+  &__actions {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    justify-content: center; margin-top: 2rem;
+  }
+}

@@ -1,0 +1,119 @@
+@use '../base/variables' as *;
+@use '../helpers/mixins' as *;
+
+.chat-bubbles {
+  &__title {
+    text-align: center;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.6rem;
+    justify-content: space-between;
+  }
+
+  &__container {
+      display: flex;
+      flex-direction: column;
+      max-width: 700px;
+      margin-bottom: -40px;
+
+      &--left {
+          align-items: flex-end;
+
+          svg {
+            margin-right: 3rem;
+            transform: scaleX(-1);
+          }
+      }
+
+      &--right {
+          align-items: flex-start;
+
+            svg {
+                margin-left: 3rem;
+            }
+      }
+
+      &--white {
+        svg {
+            @include themify($themes) {
+                fill: rgba(themed(elevated-background), $opacity-medium);
+            }
+        }
+      }
+
+        &--blue {
+            svg {
+                @include themify($themes) {
+                    fill: themed(background-blue-regular);
+                }
+            }
+        }
+
+        &--dark-blue {
+            svg {
+                @include themify($themes) {
+                    fill: themed(background-blue-dark);
+                }
+            }
+        }
+  }
+
+  &__bubble {
+    border-radius: 28px;
+    padding: 2.6rem 4.8rem;
+
+    &--white {
+        @include themify($themes) {
+            background: rgba(themed(elevated-background), $opacity-medium);
+
+            > * {
+                color: themed(text-primary);
+            }
+        }
+    }
+
+    &--blue {
+        @include themify($themes) {
+            background: themed(background-blue-regular);
+            
+            > * {
+                color: themed(fixed-white);
+            }
+        }
+    }
+
+    &--dark-blue {
+        @include themify($themes) {
+            background: themed(background-blue-dark);
+
+            > * {
+                color: themed(fixed-white);
+            }
+        }
+    }
+  }
+
+  &__icon {
+    width: 270px;
+    height: 270px;
+
+    > svg {
+        width: 100% !important;
+        height: auto !important;
+
+        path {
+            @include themify($themes) {
+                stroke: themed(stroke-blue-dark) !important;
+            }
+        }
+        
+        @include themify($themes) {
+            stroke: themed(stroke-blue-dark) !important;
+        }
+    }
+  }
+}

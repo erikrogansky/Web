@@ -60,7 +60,10 @@ $themes: (
     link-hover: $blue-700,
     link-click: $blue-800,
 
+    background-blue-light: $blue-400,
     background-blue-regular: $blue-500,
+    background-blue-dark: $blue-600,
+    background-blue-extra-dark: $blue-700,
 
     stroke-blue-light: $blue-300,
     stroke-blue-regular: $blue-500,
@@ -86,11 +89,14 @@ $themes: (
     link-hover: $blue-300,
     link-click: $blue-200,
 
+    background-blue-light: $blue-700,
     background-blue-regular: $blue-600,
+    background-blue-dark: $blue-500,
+    background-blue-extra-dark: $blue-400,
 
-    stroke-blue-light: $blue-200,
-    stroke-blue-regular: $blue-400,
-    stroke-blue-dark: $blue-600,
+    stroke-blue-light: $blue-600,
+    stroke-blue-regular: $blue-500,
+    stroke-blue-dark: $blue-400,
     stroke-gray-light: $gray-200,
     stroke-gray-regular: $gray-400,
   )

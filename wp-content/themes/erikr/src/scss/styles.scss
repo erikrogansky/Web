@@ -2,10 +2,13 @@
 @use './base/variables';
 @use './base/general';
 @use './base/typography';
+@use './blocks/banner';
+@use './blocks/hero';
+@use './blocks/chat-bubbles';
+@use './blocks/cards';
 @use './components/animated-bubbles';
 @use './components/buttons';
 @use './helpers/mixins';
 @use './layout/header';
 @use './layout/footer';
-@use './layout/hero';
 @use './layout/mobile-menu';

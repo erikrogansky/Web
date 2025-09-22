@@ -84,10 +84,6 @@ h1, .h1 {
   @include breakpoint('md') {
     font-size: 3.2rem;
   }
-
-  @include breakpoint('sm') {
-    font-size: 2.8rem;
-  }
 }
 
 h2, .h2 {
@@ -98,10 +94,6 @@ h2, .h2 {
 
   @include breakpoint('md') {
     font-size: 2.8rem;
-  }
-
-  @include breakpoint('sm') {
-    font-size: 2.4rem;
   }
 }
 
@@ -114,10 +106,6 @@ h3, .h3 {
   @include breakpoint('md') {
     font-size: 2.4rem;
   }
-
-  @include breakpoint('sm') {
-    font-size: 2.0rem;
-  }
 }
 
 h4, .h4 {
@@ -128,10 +116,6 @@ h4, .h4 {
 
   @include breakpoint('md') {
     font-size: 2.0rem;
-  }
-
-  @include breakpoint('sm') {
-    font-size: 1.8rem;
   }
 }
 
@@ -144,10 +128,6 @@ h5, .h5 {
   @include breakpoint('md') {
     font-size: 2rem;
   }
-
-  @include breakpoint('sm') {
-    font-size: 1.8rem;
-  }
 }
 
 .subtitle {
@@ -158,10 +138,6 @@ h5, .h5 {
 
   @include breakpoint('md') {
     font-size: 1.8rem;
-  }
-
-  @include breakpoint('sm') {
-    font-size: 1.6rem;
   }
 
   p {
@@ -182,19 +158,11 @@ h5, .h5 {
     font-size: 1.6rem;
   }
 
-  @include breakpoint('sm') {
-    font-size: 1.4rem;
-  }
-
   &--small {
     font-size: 1.6rem;
 
     @include breakpoint('md') {
       font-size: 1.4rem;
-    }
-
-    @include breakpoint('sm') {
-      font-size: 1.2rem;
     }
   }
 
@@ -203,10 +171,6 @@ h5, .h5 {
 
     @include breakpoint('md') {
       font-size: 1rem;
-    }
-
-    @include breakpoint('sm') {
-      font-size: 0.8rem;
     }
   }
 }

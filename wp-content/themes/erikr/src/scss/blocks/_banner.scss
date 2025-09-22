@@ -1,0 +1,17 @@
+.banner {
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-center;
+    gap: 2.4rem;
+  }
+
+  &__title {
+    text-align: center;
+    max-width: 950px;
+  }
+  &__actions {
+    
+  }
+}
