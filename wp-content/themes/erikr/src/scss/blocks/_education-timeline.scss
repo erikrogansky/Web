@@ -1,0 +1,159 @@
+@use '../base/variables' as *;
+@use '../helpers/mixins' as *;
+
+.education-timeline {
+  position: relative;
+  padding: 20px 0 40px;
+
+  &__heading { margin-bottom: 32px; }
+
+  &__track {
+    position: absolute;
+    inset: 0;
+    margin: 0 auto;
+    width: 4px;
+    border-radius: 2px;
+    top: 80px;
+    @include themify($themes) { background: themed(stroke-blue-regular); }
+    pointer-events: none;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    position: relative;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 28px 1fr;
+    align-items: start;
+    column-gap: 16px;
+    position: relative;
+  }
+
+  &__cell {
+    &--left, &--right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    &--center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 6px;
+    }
+
+    &--left .education-timeline__label {
+        text-align: right;
+    }
+  }
+
+  &__dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    box-sizing: content-box;
+
+    @include themify($themes) {
+      background: themed(background-blue-regular);
+      border: 3px solid themed(fixed-white);
+      box-shadow: 0 0 0 2.15px themed(background-blue-regular);
+    }
+  }
+
+  &__label {
+    @include themify($themes) { color: themed(text-blue-medium); }
+    margin: 4px 4px 0;
+  }
+
+  &__time {
+    display: flex;
+
+    &--left-side {
+      justify-content: flex-end;
+    }
+
+    &--right-side {
+      justify-content: flex-start;
+    }
+  }
+
+  &__date-badge {
+    line-height: 1;
+    padding: 8px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+    @include themify($themes) {
+      background: linear-gradient(to right, themed(background-blue-regular), themed(background-blue-light));
+      color: themed(fixed-white);
+    }
+  }
+}
+
+/* Card */
+.education-timeline-card {
+  position: relative;
+  padding: 22px 26px;
+  border-radius: 14px;
+  max-width: 640px;
+
+  @include themify($themes) {
+    @include bg-opacity(themed(elevated-background), $opacity-medium);
+    border: 1px solid themed(stroke-blue-light);
+    box-shadow: 0 6px 22px rgba(0,0,0,.06);
+  }
+
+  &__header { position: relative; }
+
+  &__header-link {
+    position: absolute;
+    top: 0; right: 0;
+    text-decoration: underline;
+  }
+
+  &__dates { margin-bottom: .4rem; }
+  &__title { margin: .2rem 0 .2rem; }
+  &__subtitle { opacity: .9; }
+
+  &__chips {
+    display: flex; gap: 6px; margin-top: .8rem; margin-bottom: 1rem;
+  }
+
+  &__block {
+    &:not(:last-child) { margin-bottom: 1rem; }
+  }
+}
+
+.chip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+
+  @include themify($themes) {
+    background-color: themed(background-blue-regular);
+    color: themed(fixed-white);
+  }
+}
+
+/* Responsive */
+@media (max-width: 780px) {
+  .education-timeline__track { display: none; }
+
+  .education-timeline__row {
+    grid-template-columns: 1fr; /* single column */
+    row-gap: 8px;
+  }
+
+  /* order: dot, time chip, label, card */
+  .education-timeline__cell--center { order: 0; align-items: flex-start; }
+  .education-timeline__cell--left,
+  .education-timeline__cell--right { order: 2; }
+
+  .education-timeline__time { order: 1; justify-content: flex-start !important; }
+  .education-timeline__label { order: 2; }
+  .education-timeline-card { order: 3; max-width: 100%; }
+}

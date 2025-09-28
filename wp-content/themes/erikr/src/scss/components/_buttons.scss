@@ -21,9 +21,19 @@
     gap: 0.6rem;
     width: fit-content;
 
+    &--small {
+        font-size: 1.4rem;
+        padding: 10px 16px;
+    }
+
     @include breakpoint('md') {
         font-size: 1.4rem;
         padding: 10px 16px;
+
+        &--small {
+            font-size: 1.2rem;
+            padding: 8px 14px;
+        }
     }
 
     &:not(.btn--icon, .btn--icon-circle) {

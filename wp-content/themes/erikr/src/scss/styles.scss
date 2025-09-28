@@ -6,6 +6,9 @@
 @use './blocks/hero';
 @use './blocks/chat-bubbles';
 @use './blocks/cards';
+@use './blocks/experience-timeline';
+@use './blocks/education-timeline';
+@use './blocks/numbers';
 @use './components/animated-bubbles';
 @use './components/buttons';
 @use './helpers/mixins';

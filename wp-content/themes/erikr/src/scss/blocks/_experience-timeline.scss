@@ -1,0 +1,108 @@
+@use '../base/variables' as *;
+@use '../helpers/mixins' as *;
+
+.timeline {
+  &__heading {
+    margin-bottom: 50px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    margin-bottom: 180px;
+  }
+
+  &__item {
+    &--left {
+        margin-right: auto;
+    }
+
+    &--right {
+        margin-left: auto;
+    }
+  }
+
+  &__cta {
+    max-width: 404px;
+    margin: 0 auto;
+
+    & .timeline-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &__btn {
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+.timeline-card {
+  max-width: 606px;
+  padding: 22px 26px;
+  border-radius: 14px;
+
+  @include themify($themes) {
+    @include bg-opacity(themed(elevated-background), $opacity-medium);
+    border: 1px solid themed(stroke-blue-light);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  &__header {
+    
+  }
+
+  &__dates {
+    margin-bottom: .4rem;
+  }
+
+  &__title {
+    margin-bottom: 1rem;
+  }
+
+  &__chips {
+    display: flex;
+    gap: 6px;
+
+    &:not(.timeline-card__block &) {
+      margin-bottom: 1.6rem;
+    }
+  }
+
+  &__block {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    &:not(:last-of-type) {
+      margin-bottom: 1.6rem;
+    }
+  }
+
+  &__label {
+    @include themify($themes) {
+      color: themed(text-regular);
+    }
+  }
+  &__content {}
+}
+
+.chip {
+  padding: 4px 14px;
+  border-radius: 100px;
+
+  @include themify($themes) {
+    background-color: themed(background-blue-regular);
+    color: themed(fixed-white);
+  }
+
+  &--tool {
+    @include themify($themes) {
+        @include bg-opacity(themed(elevated-background), $opacity-medium);
+        color: themed(text-regular);
+        border: 1px solid themed(stroke-blue-regular);
+    }
+  }
+}

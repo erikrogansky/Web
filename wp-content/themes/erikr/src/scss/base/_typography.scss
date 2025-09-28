@@ -153,6 +153,7 @@ h5, .h5 {
   font-size: 1.8rem;
   font-weight: 400;
   line-height: 1.4;
+  margin: 0;
 
   @include breakpoint('md') {
     font-size: 1.6rem;
@@ -166,12 +167,28 @@ h5, .h5 {
     }
   }
 
+  &--micro {
+    font-size: 1.4rem;
+
+    @include breakpoint('md') {
+      font-size: 1.2rem;
+    }
+  }
+
   &--mini {
     font-size: 1.2rem;
 
     @include breakpoint('md') {
       font-size: 1rem;
     }
+  }
+
+  p, ul, li {
+    margin: 0;
+  }
+
+  p:not(:last-of-type) {
+    margin-bottom: 1.4rem;
   }
 }
 
@@ -181,6 +198,14 @@ h5, .h5 {
 
 .font-weight-400 {
   font-weight: 400 !important;
+}
+
+.font-weight-500 {
+  font-weight: 500 !important;
+}
+
+.font-weight-600 {
+  font-weight: 600 !important;
 }
 
 .font-weight-700 {
@@ -193,6 +218,10 @@ h5, .h5 {
 
 .font-weight-900 {
   font-weight: 900 !important;
+}
+
+.text-center {
+  text-align: center !important;
 }
 
 .not-selectable {

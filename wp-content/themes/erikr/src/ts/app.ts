@@ -4,3 +4,4 @@ import "@ts/util/icons";
 import "@ts/util/header-alignment";
 import "@ts/util/dark-mode";
 import "@ts/util/mobile-menu";
+import "@ts/util/education-timeline";

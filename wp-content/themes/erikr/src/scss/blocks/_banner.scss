@@ -12,6 +12,7 @@
     max-width: 950px;
   }
   &__actions {
-    
+    display: flex;
+    gap: 12px;
   }
 }

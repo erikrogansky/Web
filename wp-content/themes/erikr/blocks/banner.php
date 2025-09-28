@@ -24,6 +24,43 @@ class Banner extends Widget_Base {
             'placeholder' => 'Your banner headline',
         ]);
 
+        $this->add_control('description', [
+            'label' => 'Description',
+            'type'  => Controls_Manager::TEXTAREA,
+            'label_block' => true,
+            'default' => '',
+            'placeholder' => 'Your banner description',
+        ]);
+
+        $this->add_control('set_max_width', [
+            'label' => 'Set Max Width',
+            'type'  => Controls_Manager::SWITCHER,
+            'label_on' => 'Yes',
+            'label_off' => 'No',
+            'return_value' => 'yes',
+            'default' => 'no',
+        ]);
+
+        $this->add_control('max_width', [
+            'label' => 'Max Width',
+            'type'  => Controls_Manager::SLIDER,
+            'size_units' => ['px'],
+            'range' => [
+                'px' => [
+                    'min' => 700,
+                    'max' => 1440,
+                    'step' => 2,
+                ],
+            ],
+            'default' => [
+                'unit' => 'px',
+                'size' => 900,
+            ],
+            'condition' => [
+                'set_max_width' => 'yes',
+            ],
+        ]);
+
         $btn = new Repeater();
         $btn->add_control('btn_text', [
             'label' => 'Text',
@@ -71,11 +108,21 @@ class Banner extends Widget_Base {
             'outline'          => 'btn--outline',
             'link'             => 'btn--link',
         ];
+
+        $maxWidthStyle = '';
+        if (!empty($s['set_max_width']) && $s['set_max_width'] === 'yes' && isset($s['max_width']['size']) && isset($s['max_width']['unit'])) {
+            $maxWidthStyle = 'max-width: ' . intval($s['max_width']['size']) . esc_attr($s['max_width']['unit']) . ';';
+        }
+
         ?>
         <section class="banner">
             <div class="banner__inner">
                 <?php if ($title): ?>
-                    <h2 class="banner__title"><?= esc_html($title) ?></h2>
+                    <h2 class="banner__title" style="<?= esc_attr($maxWidthStyle) ?>"><?= esc_html($title) ?></h2>
+                <?php endif; ?>
+
+                <?php if (!empty($s['description'])): ?>
+                    <p class="banner__description subtitle font-weight-600 text-center" style="<?= esc_attr($maxWidthStyle) ?>"><?= nl2br(esc_html($s['description'])) ?></p>
                 <?php endif; ?>
 
                 <?php if ($buttons): ?>

@@ -1,0 +1,61 @@
+@use '../base/variables' as *;
+@use '../helpers/mixins' as *;
+
+.numbers {
+  &__title { }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    width: 356px;
+    box-sizing: border-box;
+    gap: 28px;
+    padding: 20px 28px;
+    border-radius: 24px;
+
+    @include themify($themes) {
+      @include bg-opacity(themed(elevated-background), $opacity-light);
+      border: 1px solid themed(stroke-blue-light);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  &__media, &__media svg {
+    width: 84px;
+    height: 84px;
+  }
+
+  &__media svg path {
+    @include themify($themes) {
+      stroke: themed(background-blue-dark);
+    }
+  }
+
+  &__content { 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  &__number {
+    font-size: 4.8rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  &__label { }
+}
