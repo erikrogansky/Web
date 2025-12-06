@@ -35,14 +35,6 @@ class Experience_Timeline extends Widget_Base {
          * ----------------------------- */
         $this->start_controls_section('cards_section', ['label' => 'Cards']);
 
-        $chip_rep = new Repeater();
-        $chip_rep->add_control('chip_text', [
-            'label' => 'Chip Text',
-            'type'  => Controls_Manager::TEXT,
-            'label_block' => true,
-            'default' => '',
-        ]);
-
         $tool_rep = new Repeater();
         $tool_rep->add_control('tool_text', [
             'label' => 'Toolkit Item',
@@ -72,10 +64,12 @@ class Experience_Timeline extends Widget_Base {
             'default' => 'Translator (English to Slovak)',
         ]);
         $card->add_control('chips', [
-            'label' => 'Top Chips',
-            'type'  => Controls_Manager::REPEATER,
-            'fields'=> $chip_rep->get_controls(),
-            'title_field' => '{{{ chip_text || "(chip)" }}}',
+            'label' => 'Top Chips (comma-separated)',
+            'type'  => Controls_Manager::TEXT,
+            'label_block' => true,
+            'default' => '',
+            'placeholder' => 'UX Design, Development, Translation',
+            'description' => 'Enter chips separated by commas',
         ]);
         $card->add_control('how_started', [
             'label' => 'How it started',
@@ -181,7 +175,10 @@ class Experience_Timeline extends Widget_Base {
                         $end   = trim($c['end'] ?? '');
                         $pos   = trim($c['position'] ?? '');
 
-                        $chips = is_array($c['chips'] ?? null) ? $c['chips'] : [];
+                        // Parse comma-separated chips
+                        $chips_raw = trim($c['chips'] ?? '');
+                        $chips = $chips_raw ? array_map('trim', explode(',', $chips_raw)) : [];
+                        
                         $tools = is_array($c['toolkit'] ?? null) ? $c['toolkit'] : [];
 
                         $how    = isset($c['how_started']) ? $c['how_started'] : '';
@@ -203,10 +200,9 @@ class Experience_Timeline extends Widget_Base {
                                 <?php endif; ?>
                                 <?php if ($chips): ?>
                                     <div class="timeline-card__chips">
-                                        <?php foreach ($chips as $chip):
-                                            $t = trim($chip['chip_text'] ?? '');
-                                            if (!$t) continue; ?>
-                                            <span class="chip paragraph paragraph--micro font-weight-900"><?= esc_html($t) ?></span>
+                                        <?php foreach ($chips as $chip_text):
+                                            if (!$chip_text) continue; ?>
+                                            <span class="chip paragraph paragraph--micro font-weight-900"><?= esc_html($chip_text) ?></span>
                                         <?php endforeach; ?>
                                     </div>
                                 <?php endif; ?>
