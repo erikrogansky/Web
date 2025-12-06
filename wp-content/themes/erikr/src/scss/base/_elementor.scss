@@ -1,4 +1,9 @@
 .e-con-inner {
     max-width: 1216px !important;
     padding-block: 60px !important;
+
+    &:has(.contact-form-block) {
+      max-width: 1300px !important;
+      padding-block: 100px !important;
+    }
 }

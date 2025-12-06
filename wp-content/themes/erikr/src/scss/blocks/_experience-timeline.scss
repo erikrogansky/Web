@@ -24,13 +24,13 @@
   }
 
   &__cta {
-    max-width: 404px;
     margin: 0 auto;
+    max-width: 404px;
 
     & .timeline-card {
       display: flex;
-      flex-direction: column;
       align-items: center;
+      flex-direction: column;
 
       &__btn {
         margin-top: 20px;
@@ -40,14 +40,14 @@
 }
 
 .timeline-card {
-  max-width: 606px;
   padding: 22px 26px;
   border-radius: 14px;
+  max-width: 606px;
 
   @include themify($themes) {
     @include bg-opacity(themed(elevated-background), $opacity-medium);
     border: 1px solid themed(stroke-blue-light);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 5%);
   }
 
   &__header {
@@ -86,6 +86,7 @@
       color: themed(text-regular);
     }
   }
+
   &__content {}
 }
 
@@ -94,15 +95,15 @@
   border-radius: 100px;
 
   @include themify($themes) {
-    background-color: themed(background-blue-regular);
     color: themed(fixed-white);
+    background-color: themed(background-blue-regular);
   }
 
   &--tool {
     @include themify($themes) {
         @include bg-opacity(themed(elevated-background), $opacity-medium);
-        color: themed(text-regular);
         border: 1px solid themed(stroke-blue-regular);
+        color: themed(text-regular);
     }
   }
 }

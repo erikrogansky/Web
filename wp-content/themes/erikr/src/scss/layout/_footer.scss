@@ -3,13 +3,15 @@
 
 .site-footer {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 2.8rem 4.4rem 2rem;
   backdrop-filter: blur(16px);
   border-radius: 4rem;
   box-shadow: 0 2px 20px -8px rgb(65 78 78 / 25%);
+  flex-direction: column;
+  max-width: 1416px;
+  margin: 0 auto;
 
   @include themify($themes) {
     @include bg-opacity(themed(elevated-background), $opacity-light);
@@ -20,13 +22,13 @@
     margin-bottom: 2.2rem;
 
     > .site-title {
-        font-size: 2.8rem;
         text-align: center;
+        font-size: 2.8rem;
     }
 
     > .site-description {
-        font-size: 1.4rem;
         text-align: center;
+        font-size: 1.4rem;
     }
   }
 }
@@ -34,28 +36,26 @@
 .social-menu {
     display: flex;
     align-items: center;
-
     gap: 1rem;
-    
     margin-bottom: 2.8rem;
 }
 
 .social-icon svg {
     width: 2.4rem;
     height: 2.4rem;
+
     @include themify($themes) {
         color: themed(text-blue);
     }
 }
 
 .footer-menu {
-    list-style: none;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     margin: 0;
     padding: 0;
+    flex-flow: row wrap;
     gap: 1.2rem;
+    list-style: none;
     margin-bottom: 4.5rem;
 }
 

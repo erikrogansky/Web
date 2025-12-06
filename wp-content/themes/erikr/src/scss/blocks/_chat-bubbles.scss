@@ -8,17 +8,41 @@
 
   &__item {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap: 1.6rem;
     justify-content: space-between;
+    flex-direction: row;
+    gap: 1.6rem;
+    margin-bottom: 3rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
   }
 
   &__container {
       display: flex;
       flex-direction: column;
-      max-width: 700px;
       margin-bottom: -40px;
+      max-width: 700px;
+
+      @media (max-width: 768px) {
+        max-width: 500px;
+      }
+
+      @media (max-width: 480px) {
+        max-width: 100%;
+        margin-bottom: -30px;
+      }
 
       &--left {
           align-items: flex-end;
@@ -26,6 +50,14 @@
           svg {
             margin-right: 3rem;
             transform: scaleX(-1);
+
+            @media (max-width: 768px) {
+              margin-right: 2rem;
+            }
+
+            @media (max-width: 480px) {
+              margin-right: 1rem;
+            }
           }
       }
 
@@ -34,44 +66,72 @@
 
             svg {
                 margin-left: 3rem;
+
+                @media (max-width: 768px) {
+                  margin-left: 2rem;
+                }
+
+                @media (max-width: 480px) {
+                  margin-left: 1rem;
+                }
             }
       }
 
       &--white {
         svg {
             @include themify($themes) {
-                fill: rgba(themed(elevated-background), $opacity-medium);
+                fill: rgb(themed(elevated-background), $opacity-medium);
             }
         }
       }
 
-        &--blue {
-            svg {
-                @include themify($themes) {
-                    fill: themed(background-blue-regular);
-                }
-            }
-        }
+      &--blue {
+          svg {
+              @include themify($themes) {
+                  fill: themed(background-blue-regular);
+              }
+          }
+      }
 
-        &--dark-blue {
-            svg {
-                @include themify($themes) {
-                    fill: themed(background-blue-dark);
-                }
-            }
-        }
+      &--dark-blue {
+          svg {
+              @include themify($themes) {
+                  fill: themed(background-blue-dark);
+              }
+          }
+      }
   }
 
   &__bubble {
-    border-radius: 28px;
     padding: 2.6rem 4.8rem;
+    border-radius: 28px;
+
+    @media (max-width: 768px) {
+      padding: 2rem 3rem;
+    }
+
+    @media (max-width: 480px) {
+      padding: 1.5rem 2rem;
+      border-radius: 20px;
+    }
+
+    ul, ol {
+      margin-left: 0;
+      padding-left: 2rem;
+
+      li {
+        &::marker {
+          font-size: 1.2em;
+        }
+      }
+    }
 
     &--white {
         @include themify($themes) {
-            background: rgba(themed(elevated-background), $opacity-medium);
+            background: rgb(themed(elevated-background), $opacity-medium);
 
-            > * {
-                color: themed(text-primary);
+            * {
+                color: themed(text-regular);
             }
         }
     }
@@ -80,8 +140,8 @@
         @include themify($themes) {
             background: themed(background-blue-regular);
             
-            > * {
-                color: themed(fixed-white);
+            * {
+                color: themed(text-inverse);
             }
         }
     }
@@ -90,7 +150,7 @@
         @include themify($themes) {
             background: themed(background-blue-dark);
 
-            > * {
+            * {
                 color: themed(fixed-white);
             }
         }
@@ -98,12 +158,26 @@
   }
 
   &__icon {
-    width: 270px;
-    height: 270px;
+    flex-shrink: 0;
 
     > svg {
-        width: 100% !important;
-        height: auto !important;
+        width: 270px !important;
+        height: 270px !important;
+
+        @media (max-width: 1024px) {
+          width: 200px !important;
+          height: 200px !important;
+        }
+
+        @media (max-width: 768px) {
+          width: 150px !important;
+          height: 150px !important;
+        }
+
+        @media (max-width: 480px) {
+          width: 100px !important;
+          height: 100px !important;
+        }
 
         path {
             @include themify($themes) {

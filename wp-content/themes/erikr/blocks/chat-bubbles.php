@@ -24,8 +24,7 @@ class Chat_Bubbles_Block extends Widget_Base {
 
         $rep->add_control('item_text', [
             'label' => __('Text','theme'),
-            'type'  => Controls_Manager::TEXTAREA,
-            'rows'  => 3,
+            'type'  => Controls_Manager::WYSIWYG,
             'default' => __('Your message goes here…','theme'),
         ]);
 
@@ -105,7 +104,7 @@ class Chat_Bubbles_Block extends Widget_Base {
 
                         <div class="<?= esc_attr(implode(' ', $bubble_container_classes)) ?>">
                             <div class="<?= esc_attr(implode(' ', $bubble_classes)) ?>">
-                                <span class="chat-bubbles__text paragraph"><?= esc_html($text) ?></span>
+                                <div class="chat-bubbles__text paragraph"><?= wp_kses_post($text) ?></div>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="44" height="39" viewBox="0 0 44 39">
                                 <path d="M1.24739 32.8715C6.50425 26.5029 12.7572 15.3146 10 -0.00341797H44C38.6884 28.6794 16.3233 36.2962 3.724 38.2991C0.899606 38.7481 -0.573153 35.077 1.24739 32.8715Z"/>

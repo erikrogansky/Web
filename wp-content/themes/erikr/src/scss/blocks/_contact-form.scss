@@ -1,0 +1,725 @@
+@use '@scss/base/variables' as *;
+@use '@scss/helpers/mixins' as *;
+
+// ================================================
+// Contact Form Block Styles
+// ================================================
+
+.contact-form-block {
+    &__inner {
+        display: grid;
+        align-items: start;
+        margin: 0 auto;
+        gap: 6rem;
+        grid-template-columns: 1fr 1fr;
+        max-width: 1400px;
+
+        @media (width <= 968px) {
+            gap: 4rem;
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // ================================================
+    // Contact Information (Right Side)
+    // ================================================
+
+    &__info {
+        padding: 1rem 0;
+
+        @media (width <= 968px) {
+            padding: 1rem 0;
+            order: 2;
+        }
+    }
+
+    &__info-title {
+        margin: 0 0 1.2rem;
+        font-size: 2.8rem;
+        font-weight: 700;
+        line-height: 1.2;
+
+        @include themify($themes) {
+            color: themed(text-blue);
+        }
+
+        @media (width <= 968px) {
+            font-size: 2.4rem;
+        }
+
+        @media (width <= 480px) {
+            font-size: 2rem;
+        }
+    }
+
+    &__info-subtitle {
+        margin: 0 0 1.2rem;
+        font-size: 1.6rem;
+        line-height: 1.5;
+
+        @include themify($themes) {
+            color: themed(text-regular);
+        }
+
+        @media (width <= 480px) {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__availability {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.8rem 1.6rem;
+        backdrop-filter: blur(8px);
+        border-radius: 100px;
+        gap: 0.8rem;
+        margin-bottom: 3.2rem;
+
+        @include themify($themes) {
+            border: 1.5px solid rgb(themed(background-blue-regular), 0.3);
+            background: rgb(themed(background-blue-regular), 0.1);
+        }
+
+        @media (width <= 480px) {
+            margin-bottom: 2.8rem;
+        }
+    }
+
+    &__info-items {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        margin-bottom: 3.2rem;
+    }
+
+    &__section-title {
+        margin: 0 0 1.6rem;
+        opacity: 0.5;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+
+        @include themify($themes) {
+            color: themed(text-blue);
+        }
+    }
+
+    // ================================================
+    // Form Wrapper (Left Side)
+    // ================================================
+
+    &__form-wrapper {
+        padding: 3rem;
+        backdrop-filter: blur(16px);
+        border-radius: 32px;
+        box-shadow: 0 2px 20px -8px rgb(65 78 78 / 25%);
+
+        @include themify($themes) {
+            @include bg-opacity(themed(elevated-background), $opacity-light);
+        }
+
+        @media (width <= 968px) {
+            padding: 2.4rem;
+            order: 1;
+        }
+
+        @media (width <= 480px) {
+            padding: 2rem;
+        }
+    }
+
+    &__form-title {
+        margin: 0 0 2rem;
+        font-size: 2rem;
+        font-weight: 700;
+
+        @include themify($themes) {
+            color: themed(text-blue);
+        }
+
+        @media (width <= 480px) {
+            font-size: 1.8rem;
+        }
+    }
+}
+
+// ================================================
+// Contact Info Item
+// ================================================
+
+.contact-info-item {
+    display: flex;
+    align-items: center;
+    padding: 1.6rem 1.8rem;
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    gap: 1.4rem;
+    transition: all 0.25s ease;
+
+    @include themify($themes) {
+        border: 1px solid rgb(themed(stroke-blue-light), 0.3);
+        background: rgb(themed(elevated-background), 0.3);
+    }
+
+    &:hover {
+        transform: translateX(4px);
+
+        @include themify($themes) {
+            background: rgb(themed(elevated-background), 0.5);
+            border-color: rgb(themed(background-blue-regular), 0.3);
+            box-shadow: 0 4px 16px -4px rgb(65 78 78 / 15%);
+        }
+    }
+
+    &__icon {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+        transition: all 0.25s ease;
+
+        @include themify($themes) {
+            color: themed(background-blue-regular);
+        }
+    }
+
+    &:hover &__icon {
+        transform: scale(1.1);
+    }
+
+    &__text {
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s ease;
+
+        @include themify($themes) {
+            color: themed(text-regular);
+        }
+    }
+
+    a.contact-info-item__text {
+        &:hover {
+            @include themify($themes) {
+                color: themed(background-blue-regular);
+            }
+        }
+    }
+}
+
+// ================================================
+// Availability Badge
+// ================================================
+
+.availability-badge {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &__dot {
+        width: 8px;
+        height: 8px;
+        animation: pulse 2s ease-in-out infinite;
+        filter: drop-shadow(0 0 6px currentcolor);
+        flex-shrink: 0;
+
+        @include themify($themes) {
+            color: themed(background-blue-regular);
+        }
+    }
+
+    &__text {
+        font-size: 1.35rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+
+        @include themify($themes) {
+            color: themed(text-blue);
+        }
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+// ================================================
+// Response Time
+// ================================================
+
+.response-time {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-left: 2rem;
+
+    &__icon {
+        width: 15px;
+        height: 15px;
+        opacity: 0.6;
+        flex-shrink: 0;
+
+        @include themify($themes) {
+            color: themed(text-blue);
+        }
+    }
+
+    &__text {
+        opacity: 0.8;
+        font-size: 1.35rem;
+        font-weight: 500;
+
+        @include themify($themes) {
+            color: themed(text-regular);
+        }
+    }
+}
+
+// ================================================
+// Business/Legal Information
+// ================================================
+
+.business-info {
+    &__title {
+        margin: 0 0 1.6rem;
+        opacity: 0.5;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+
+        @include themify($themes) {
+            color: themed(text-blue);
+        }
+
+        @media (width <= 480px) {
+            font-size: 1.25rem;
+            margin-bottom: 1.4rem;
+        }
+    }
+
+    &__grid {
+        display: grid;
+        gap: 1.2rem;
+        grid-template-columns: repeat(2, 1fr);
+
+        @media (width <= 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__item {
+        display: flex;
+        padding: 1.4rem 1.6rem;
+        backdrop-filter: blur(8px);
+        border-radius: 12px;
+        flex-direction: column;
+        gap: 0.6rem;
+        transition: all 0.2s ease;
+
+        @include themify($themes) {
+            border: 1px solid rgb(themed(stroke-blue-light), 0.2);
+            background: rgb(themed(elevated-background), 0.3);
+        }
+
+        &:hover {
+            @include themify($themes) {
+                background: rgb(themed(elevated-background), 0.4);
+                border-color: rgb(themed(stroke-blue-light), 0.3);
+            }
+        }
+
+        &--full {
+            grid-column: 1 / -1;
+        }
+    }
+
+    &__label {
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.2rem;
+        text-transform: uppercase;
+
+        @include themify($themes) {
+            color: themed(text-blue);
+            opacity: 0.5;
+        }
+    }
+
+    &__value {
+        font-size: 1.4rem;
+        font-weight: 500;
+        line-height: 1.4;
+
+        @include themify($themes) {
+            color: themed(text-regular);
+        }
+
+        @media (width <= 480px) {
+            font-size: 1.3rem;
+        }
+    }
+}
+
+// ================================================
+// Contact Form
+// ================================================
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__messages {
+        display: none;
+        padding: 1.4rem 1.6rem;
+        backdrop-filter: blur(8px);
+        border-radius: 12px;
+        font-size: 1.4rem;
+        margin-bottom: 0.8rem;
+
+        &.success {
+            display: block;
+            border: 1px solid rgb(16 185 129 / 40%);
+            background: rgb(16 185 129 / 15%);
+
+            @include themify($themes) {
+                color: themed(text-regular);
+            }
+        }
+
+        &.error {
+            display: block;
+            border: 1px solid rgb(239 68 68 / 40%);
+            background: rgb(239 68 68 / 15%);
+
+            @include themify($themes) {
+                color: themed(text-regular);
+            }
+        }
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    &__label {
+        font-size: 1.4rem;
+        font-weight: 600;
+
+        @include themify($themes) {
+            color: themed(text-regular);
+        }
+
+        .required {
+            @include themify($themes) {
+                color: themed(background-blue-regular);
+            }
+        }
+
+        .optional {
+            font-weight: 400;
+
+            @include themify($themes) {
+                color: themed(text-muted);
+            }
+        }
+    }
+
+    &__input,
+    &__select,
+    &__textarea {
+        width: 100%;
+        padding: 1.4rem 1.8rem;
+        backdrop-filter: blur(8px);
+        border-radius: 12px;
+        font-family: inherit;
+        font-size: 1.6rem;
+        transition: all 0.3s ease;
+
+        @include themify($themes) {
+            border: 1px solid rgb(themed(stroke-blue-light), 0.5);
+            background: rgb(themed(elevated-background), 0.5);
+            color: themed(text-regular);
+        }
+
+        &:focus {
+            outline: none;
+            transform: translateY(-1px);
+
+            @include themify($themes) {
+                background: rgb(themed(elevated-background), 0.7);
+                border-color: themed(stroke-blue-regular);
+                box-shadow: 0 0 0 3px rgb(themed(background-blue-regular), 0.1);
+            }
+        }
+
+        &::placeholder {
+            @include themify($themes) {
+                color: themed(text-muted);
+            }
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+
+            @include themify($themes) {
+                background: rgb(themed(elevated-background), 0.3);
+            }
+        }
+    }
+
+    &__select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 7.5L10 12.5L15 7.5' stroke='%230A7779' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-position: right 1.4rem center;
+        background-repeat: no-repeat;
+        background-size: 20px 20px;
+        cursor: pointer;
+        padding-right: 3.5rem;
+
+        [data-theme="dark"] & {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 7.5L10 12.5L15 7.5' stroke='%239FE9EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        }
+    }
+
+    &__select-native {
+        display: none;
+    }
+
+    &__textarea {
+        line-height: 1.6;
+        min-height: 160px;
+        resize: vertical;
+    }
+
+    &__submit {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.6rem 3.2rem;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 1.6rem;
+        font-weight: 600;
+        gap: 0.8rem;
+        margin-top: 1.2rem;
+        transition: all 0.3s ease;
+
+        &.loading {
+            opacity: 0.8;
+            pointer-events: none;
+
+            .contact-form__submit-text {
+                opacity: 0;
+            }
+
+            .contact-form__submit-loader {
+                display: block;
+            }
+        }
+    }
+
+    &__submit-text {
+        transition: opacity 0.2s ease;
+    }
+
+    &__submit-loader {
+        position: absolute;
+        display: none;
+        width: 24px;
+        height: 24px;
+        border: 3px solid rgb(255 255 255 / 30%);
+        animation: spin 0.6s linear infinite;
+        border-radius: 50%;
+        border-top-color: #fff;
+    }
+
+    &__recaptcha-notice {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin-top: 1.2rem;
+
+        @include themify($themes) {
+            color: themed(text-muted);
+        }
+
+        a {
+            text-decoration: none;
+            transition: color 0.2s ease;
+
+            @include themify($themes) {
+                color: themed(link-color);
+            }
+
+            &:hover {
+                text-decoration: underline;
+
+                @include themify($themes) {
+                    color: themed(link-hover);
+                }
+            }
+        }
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// ================================================
+// Custom Select Dropdown
+// ================================================
+
+.custom-select {
+    position: relative;
+    width: 100%;
+
+    &__trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 1.4rem 1.8rem;
+        backdrop-filter: blur(8px);
+        border-radius: 12px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1.6rem;
+        gap: 1rem;
+        transition: all 0.3s ease;
+
+        @include themify($themes) {
+            background: rgb(themed(elevated-background), 0.5);
+            color: themed(text-regular);
+        }
+
+        &:hover {
+            transform: translateY(-1px);
+
+            @include themify($themes) {
+                background: rgb(themed(elevated-background), 0.7);
+            }
+        }
+
+        .custom-select.is-open & {
+            @include themify($themes) {
+                background: rgb(themed(elevated-background), 0.7);
+                box-shadow: 0 0 0 3px rgb(themed(background-blue-regular), 0.1);
+            }
+        }
+    }
+
+    &__value {
+        flex: 1;
+
+        &.is-placeholder {
+            @include themify($themes) {
+                color: themed(text-muted);
+            }
+        }
+    }
+
+    &__arrow {
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+
+        @include themify($themes) {
+            color: themed(text-blue);
+        }
+
+        .custom-select.is-open & {
+            transform: rotate(180deg);
+        }
+    }
+
+    &__options {
+        position: absolute;
+        top: calc(100% + 0.8rem);
+        right: 0;
+        left: 0;
+        z-index: 100;
+        opacity: 0;
+        visibility: hidden;
+        backdrop-filter: blur(16px);
+        border-radius: 12px;
+        box-shadow: 0 8px 24px -8px rgb(65 78 78 / 30%);
+        max-height: 280px;
+        overflow-y: auto;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+
+        @include themify($themes) {
+            background: rgb(themed(elevated-background), 0.95);
+        }
+
+        .custom-select.is-open & {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+
+            @include themify($themes) {
+                background: rgb(themed(background-blue-regular), 0.3);
+            }
+
+            &:hover {
+                @include themify($themes) {
+                    background: rgb(themed(background-blue-regular), 0.5);
+                }
+            }
+        }
+    }
+
+    &__option {
+        padding: 1.2rem 1.8rem;
+        cursor: pointer;
+        font-size: 1.6rem;
+        transition: all 0.2s ease;
+
+        @include themify($themes) {
+            color: themed(text-regular);
+        }
+
+        &:hover {
+            @include themify($themes) {
+                background: rgb(themed(background-blue-regular), 0.15);
+            }
+        }
+
+        &.is-selected {
+            font-weight: 600;
+
+            @include themify($themes) {
+                background: rgb(themed(background-blue-regular), 0.2);
+                color: themed(text-blue);
+            }
+        }
+    }
+}

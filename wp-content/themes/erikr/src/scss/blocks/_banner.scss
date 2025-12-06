@@ -1,9 +1,9 @@
 .banner {
   &__inner {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: space-center;
+    flex-direction: column;
     gap: 2.4rem;
   }
 
@@ -11,8 +11,16 @@
     text-align: center;
     max-width: 950px;
   }
+
   &__actions {
     display: flex;
     gap: 12px;
+  }
+
+  &--small {
+    .h4 {
+      text-align: center;
+      max-width: 950px;
+    }
   }
 }

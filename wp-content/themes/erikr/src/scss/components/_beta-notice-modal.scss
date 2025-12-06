@@ -1,0 +1,121 @@
+@use '@scss/base/variables' as *;
+@use '@scss/helpers/mixins' as *;
+
+.beta-notice-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    &--visible {
+        display: flex;
+        opacity: 1;
+
+        .beta-notice-modal__container {
+            transform: scale(1);
+        }
+    }
+
+    &__overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        backdrop-filter: blur(32px);
+    }
+
+    &__container {
+        position: relative;
+        z-index: 1;
+        max-width: 540px;
+        width: calc(100% - 40px);
+        margin: 0 auto;
+        transform: scale(0.95);
+        transition: transform 0.3s ease;
+    }
+
+    &__content {
+        padding: 4rem;
+        border-radius: 32px;
+        box-shadow: -2px 0 20px -8px rgba(65, 78, 78, 0.25);
+
+        @include themify($themes) {
+            @include bg-opacity(themed(elevated-background), $opacity-medium);
+        }
+
+        @include breakpoint('md') {
+            padding: 3rem 2.4rem;
+        }
+
+        @include breakpoint('sm') {
+            padding: 2.4rem 2rem;
+        }
+    }
+
+    &__title {
+        margin: 0 0 1.6rem;
+        font-family: 'SN Pro', sans-serif;
+        font-size: 2.8rem;
+        font-weight: 900;
+        line-height: 1.3;
+
+        @include themify($themes) {
+            color: themed(text-regular);
+        }
+
+        @include breakpoint('md') {
+            font-size: 2.4rem;
+        }
+
+        @include breakpoint('sm') {
+            font-size: 2rem;
+        }
+    }
+
+    &__description {
+        margin: 0 0 3rem;
+        font-size: 1.6rem;
+        line-height: 1.6;
+
+        @include themify($themes) {
+            color: themed(text-regular);
+        }
+
+        @include breakpoint('sm') {
+            font-size: 1.4rem;
+            margin-bottom: 2.4rem;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+
+        @include breakpoint('sm') {
+            flex-direction: column;
+        }
+    }
+
+    &__btn {
+        flex: 1;
+        min-width: 150px;
+
+        @include breakpoint('sm') {
+            width: 100%;
+            min-width: 100%;
+        }
+    }
+}
+
+body:has(.beta-notice-modal--visible) {
+    overflow: hidden;
+}

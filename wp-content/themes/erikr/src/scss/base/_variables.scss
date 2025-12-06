@@ -14,7 +14,6 @@ $blue-200: #B7EEEF;
 $blue-100: #CFF4F4;
 $blue-50: #E7F9FA;
 $blue-5: #F3FCFC;
-
 $gray-500: #414E4E;
 $gray-400: #A0A6A6;
 $gray-300: #B3B8B8;
@@ -22,11 +21,10 @@ $gray-200: #C6CACA;
 $gray-100: #D9DCDC;
 $gray-50: #ECEDED;
 $gray-5: #F5F6F6;
-
 $white: #fff;
 
 
-//Tokens
+// Tokens
 $text-regular: $gray-500;
 $text-muted: $gray-400;
 $text-inverse: $white;
@@ -41,7 +39,7 @@ $stroke-blue-dark: $blue-700;
 $stroke-gray-light: $gray-300;
 $stroke-gray-regular: $gray-500;
 
-//Tokens
+// Tokens
 $themes: (
   light: (
     fixed-white: $white,
@@ -61,6 +59,8 @@ $themes: (
     link-hover: $blue-700,
     link-click: $blue-800,
 
+    background-blue-2x-light: $blue-50,
+    background-blue-extra-light: $blue-200,
     background-blue-light: $blue-400,
     background-blue-regular: $blue-500,
     background-blue-dark: $blue-600,
@@ -91,6 +91,8 @@ $themes: (
     link-hover: $blue-300,
     link-click: $blue-200,
 
+    background-blue-2x-light: $blue-900,
+    background-blue-extra-light: $blue-800,
     background-blue-light: $blue-700,
     background-blue-regular: $blue-600,
     background-blue-dark: $blue-500,
@@ -103,7 +105,6 @@ $themes: (
     stroke-gray-regular: $gray-400,
   )
 );
-
 $opacity-strong: 0.9;
 $opacity-medium: 0.6;
 $opacity-light: 0.3;

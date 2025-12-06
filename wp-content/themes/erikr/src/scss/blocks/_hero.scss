@@ -4,13 +4,13 @@
 .header-hero {
   &__inner {
     display: flex;
-    gap: 2rem;
     align-items: center;
     justify-content: space-between;
+    gap: 2rem;
 
     @include breakpoint('md') {
-      flex-direction: column;
       text-align: center;
+      flex-direction: column;
       gap: 4rem;
     }
   }
@@ -29,8 +29,8 @@
 
   &__actions {
     display: flex;
-    gap: 1.2rem;
     flex-wrap: wrap;
+    gap: 1.2rem;
 
     @include breakpoint('md') {
       justify-content: center;
@@ -39,8 +39,8 @@
 
   &__image {
     display: block;
-    max-width: 380px !important;
     width: 100%;
     height: auto;
+    max-width: 380px !important;
   }
 }

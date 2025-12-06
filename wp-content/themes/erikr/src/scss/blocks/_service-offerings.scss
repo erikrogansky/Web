@@ -1,0 +1,253 @@
+@use '../base/variables' as *;
+@use '../helpers/mixins' as *;
+
+.service-offerings {
+  &__inner {
+    margin: 0 auto;
+    max-width: 890px;
+  }
+
+  &__master-title {
+    text-align: center;
+    margin-bottom: 4.2rem;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 3.2rem;
+  }
+
+  &__title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 1.4rem;
+
+    @include breakpoint('md') {
+      font-size: 2.4rem;
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: 1.6rem;
+  }
+
+  &__description {
+    p {
+      margin: 0;
+    }
+  }
+
+  &__tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 4.2rem;
+  }
+
+  &__tag {
+    display: inline-flex;
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    
+    @include themify($themes) {
+      border: 1px solid themed(stroke-blue-regular);
+      background: rgb(themed(elevated-background), $opacity-light);
+      color: themed(text-regular);
+    }
+
+    @include breakpoint('md') {
+      padding: 6px 14px;
+      font-size: 1.3rem;
+    }
+  }
+
+  &__cards {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 4.8rem;
+
+    @include breakpoint('md') {
+      gap: 1.6rem;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    padding: 3.2rem 2.4rem;
+    border-radius: 16px;
+
+    @include themify($themes) {
+      @include bg-opacity(themed(elevated-background), $opacity-medium);
+      border: 1px solid themed(stroke-blue-regular);
+    }
+
+    @include breakpoint('md') {
+      padding: 2.4rem 1.8rem;
+    }
+  }
+
+  &__card-title {
+    font-size: 2.0rem;
+    font-weight: 800;
+    margin-bottom: 1.8rem;
+
+    @include breakpoint('md') {
+      font-size: 1.8rem;
+      margin-bottom: 1.4rem;
+    }
+  }
+
+  &__card-content {
+    p {
+      margin: 0;
+    }
+
+    ul {
+      margin: 0;
+      list-style-type: disc;
+      padding-left: 2rem;
+    }
+
+    li {
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__faqs {
+    margin-bottom: 4.2rem;
+  }
+
+  &__faq-title {
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 2.8rem;
+
+    @include breakpoint('md') {
+      font-size: 2.0rem;
+    }
+  }
+
+  &__faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__faq-item {
+    // Container only, no background
+  }
+
+  &__faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.6rem 2.4rem;
+    border: none;
+    text-align: left;
+    border-radius: 100px;
+    box-shadow: 0 2px 12px -4px rgb(65 78 78 / 15%);
+    cursor: pointer;
+    font-family: 'SN Pro', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    @include themify($themes) {
+      @include bg-opacity(themed(elevated-background), $opacity-medium);
+      color: themed(text-regular);
+    }
+
+    &:hover {
+      @include themify($themes) {
+        @include bg-opacity(themed(elevated-background), $opacity-medium);
+      }
+    }
+
+    &[aria-expanded="true"] {
+      border-radius: 24px 24px 0 0;
+      box-shadow: none;
+      
+      @include themify($themes) {
+        background: themed(elevated-background);
+      }
+      
+      .service-offerings__faq-icon {
+        transform: rotate(45deg);
+      }
+    }
+
+    @include breakpoint('md') {
+      padding: 1.4rem 2rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  &__faq-icon {
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    @include themify($themes) {
+      color: themed(text-blue);
+    }
+  }
+
+  &__faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    margin-top: 0;
+    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &[aria-hidden="false"] {
+      grid-template-rows: 1fr;
+    }
+  }
+
+  &__faq-content {
+    padding: 0 2.4rem;
+    opacity: 0;
+    overflow: hidden;
+    border-radius: 0 0 24px 24px;
+    box-shadow: 0 2px 12px -4px rgb(65 78 78 / 15%);
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
+                padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    @include themify($themes) {
+      @include bg-opacity(themed(elevated-background), $opacity-medium);
+    }
+
+    .service-offerings__faq-answer[aria-hidden="false"] & {
+      padding: 2rem 2.4rem 2.4rem;
+      opacity: 1;
+    }
+
+    @include breakpoint('md') {
+      .service-offerings__faq-answer[aria-hidden="false"] & {
+        padding: 1.6rem 2rem 2rem;
+      }
+    }
+
+    p {
+      margin: 0;
+    }
+
+    p:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 3.2rem;
+  }
+}

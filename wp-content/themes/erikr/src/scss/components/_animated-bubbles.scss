@@ -18,9 +18,9 @@
     background: radial-gradient(
       circle at 50% 50%,
       themed(page-bubbles) 0%,
-      rgba(themed(page-bubbles), 0.666) 30%,
-      rgba(themed(page-bubbles), 0.333) 45%,
-      rgba(themed(page-bubbles), 0) 70%
+      rgb(themed(page-bubbles), 0.666) 30%,
+      rgb(themed(page-bubbles), 0.333) 45%,
+      rgb(themed(page-bubbles), 0) 70%
     );
   }
   aspect-ratio: 1 / 1;

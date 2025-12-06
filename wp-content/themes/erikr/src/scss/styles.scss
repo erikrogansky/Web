@@ -9,7 +9,11 @@
 @use './blocks/experience-timeline';
 @use './blocks/education-timeline';
 @use './blocks/numbers';
+@use './blocks/skills';
+@use './blocks/contact-form';
+@use './blocks/service-offerings';
 @use './components/animated-bubbles';
+@use './components/beta-notice-modal';
 @use './components/buttons';
 @use './helpers/mixins';
 @use './layout/header';

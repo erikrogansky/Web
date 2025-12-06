@@ -16,6 +16,16 @@ class Banner extends Widget_Base {
     protected function register_controls() {
         $this->start_controls_section('content', ['label' => 'Content']);
 
+        $this->add_control('size', [
+            'label' => 'Size',
+            'type'  => Controls_Manager::SELECT,
+            'default' => 'default',
+            'options' => [
+                'default' => 'Default',
+                'small'   => 'Small',
+            ],
+        ]);
+
         $this->add_control('title', [
             'label' => 'Title',
             'type'  => Controls_Manager::TEXT,
@@ -114,15 +124,20 @@ class Banner extends Widget_Base {
             $maxWidthStyle = 'max-width: ' . intval($s['max_width']['size']) . esc_attr($s['max_width']['unit']) . ';';
         }
 
+        $size = $s['size'] ?? 'default';
+        $sizeClass = $size === 'small' ? ' banner--small' : '';
+        $titleClass = $size === 'small' ? 'h4 font-weight-600' : 'banner__title';
+        $descClass = $size === 'small' ? 'subtitle text-center' : 'banner__description subtitle font-weight-600 text-center';
+
         ?>
-        <section class="banner">
+        <section class="banner<?= esc_attr($sizeClass) ?>">
             <div class="banner__inner">
                 <?php if ($title): ?>
-                    <h2 class="banner__title" style="<?= esc_attr($maxWidthStyle) ?>"><?= esc_html($title) ?></h2>
+                    <h2 class="<?= esc_attr($titleClass) ?>" style="<?= esc_attr($maxWidthStyle) ?>"><?= esc_html($title) ?></h2>
                 <?php endif; ?>
 
                 <?php if (!empty($s['description'])): ?>
-                    <p class="banner__description subtitle font-weight-600 text-center" style="<?= esc_attr($maxWidthStyle) ?>"><?= nl2br(esc_html($s['description'])) ?></p>
+                    <p class="<?= esc_attr($descClass) ?>" style="<?= esc_attr($maxWidthStyle) ?>"><?= nl2br(esc_html($s['description'])) ?></p>
                 <?php endif; ?>
 
                 <?php if ($buttons): ?>

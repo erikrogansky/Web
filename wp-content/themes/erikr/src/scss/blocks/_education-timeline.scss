@@ -5,32 +5,77 @@
   position: relative;
   padding: 20px 0 40px;
 
-  &__heading { margin-bottom: 32px; }
+  &__heading { margin-bottom: 64px; }
 
   &__track {
     position: absolute;
-    inset: 0;
-    margin: 0 auto;
-    width: 4px;
-    border-radius: 2px;
     top: 80px;
-    @include themify($themes) { background: themed(stroke-blue-regular); }
+    width: 4px;
+    margin: 0 auto;
+    border-radius: 2px;
+    inset: 0;
     pointer-events: none;
+
+    @include themify($themes) { background: themed(stroke-blue-regular); }
+
+    // Tablet: move track to left side
+    @include breakpoint(md) {
+      right: auto;
+      left: 12px;
+      margin: 0;
+    }
+
+    // Mobile: hide timeline track
+    @include breakpoint(xs) {
+      display: none;
+    }
   }
 
   &__list {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 48px;
-    position: relative;
   }
 
   &__row {
+    position: relative;
     display: grid;
-    grid-template-columns: 1fr 28px 1fr;
     align-items: start;
     column-gap: 16px;
-    position: relative;
+    grid-template-columns: 1fr 28px 1fr;
+
+    // Tablet: collapse to single column with dot on left
+    @include breakpoint(md) {
+      grid-template-columns: 28px auto;
+      grid-template-rows: 1fr;
+      
+      .education-timeline__cell--left,
+      .education-timeline__cell--right {
+        // Both cells in the same column and row
+        grid-column: 2;
+        grid-row: 1;
+      }
+      
+      .education-timeline__cell--center {
+        grid-column: 1;
+        grid-row: 1;
+      }
+      
+      // Hide whichever cell doesn't have content
+
+      .education-timeline__cell--left:empty,
+      .education-timeline__cell--right:empty {
+        display: none;
+      }
+    }
+
+    // Mobile: full vertical stack with horizontal timeline
+    @include breakpoint(xs) {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
   }
 
   &__cell {
@@ -42,13 +87,118 @@
 
     &--center {
       display: flex;
-      flex-direction: column;
       align-items: center;
+      flex-direction: column;
       padding-top: 6px;
+
+      // Mobile: hide dots
+      @include breakpoint(xs) {
+        display: none;
+      }
     }
 
-    &--left .education-timeline__label {
+    &--left {
+      .education-timeline__label {
         text-align: right;
+      }
+    }
+    
+    &--right {
+      // Tablet: show chip + label + card in proper order
+      @include breakpoint(md) {
+        .education-timeline__time--on-card-side {
+          justify-content: flex-start;
+          order: -2; // chip first
+        }
+        
+        .education-timeline__label {
+          text-align: left;
+          order: -1; // label second
+        }
+        
+        .education-timeline-card {
+          order: 0; // card last
+        }
+        
+        // Hide the opposite-side chip
+
+        .education-timeline__time--right-side {
+          display: none;
+        }
+      }
+      
+      // Mobile: proper vertical stacking
+      @include breakpoint(xs) {
+        .education-timeline__time--on-card-side {
+          justify-content: flex-start;
+          margin-bottom: 8px;
+          order: -2;
+        }
+        
+        .education-timeline__label {
+          text-align: left;
+          order: -1;
+        }
+        
+        .education-timeline-card {
+          order: 0;
+        }
+        
+        .education-timeline__time--right-side {
+          display: none;
+        }
+      }
+    }
+    
+    &--left {
+      .education-timeline__label {
+        text-align: right;
+      }
+      
+      // Tablet/Mobile: show chip + label + card when on left, align left
+      @include breakpoint(md) {
+        .education-timeline__time--on-card-side {
+          display: flex;
+          justify-content: flex-start;
+        }
+        
+        .education-timeline__label {
+          text-align: left;
+        }
+        
+        .education-timeline__time--on-card-side {
+          order: -2;
+        }
+        
+        .education-timeline__label {
+          order: -1;
+        }
+        
+        .education-timeline-card {
+          order: 0;
+        }
+        
+        // Hide opposite-side chip
+
+        .education-timeline__time--left-side {
+          display: none;
+        }
+      }
+      
+      @include breakpoint(xs) {
+        .education-timeline__time--on-card-side {
+          justify-content: flex-start;
+          margin-bottom: 8px;
+        }
+        
+        .education-timeline__label {
+          text-align: left;
+        }
+        
+        .education-timeline__time--left-side {
+          display: none;
+        }
+      }
     }
   }
 
@@ -59,15 +209,25 @@
     box-sizing: content-box;
 
     @include themify($themes) {
-      background: themed(background-blue-regular);
       border: 3px solid themed(fixed-white);
+      background: themed(background-blue-regular);
       box-shadow: 0 0 0 2.15px themed(background-blue-regular);
+    }
+
+    // Mobile: position on horizontal line
+    @include breakpoint(xs) {
+      flex-shrink: 0;
     }
   }
 
   &__label {
     @include themify($themes) { color: themed(text-blue-medium); }
     margin: 4px 4px 0;
+
+    // Mobile: adjust spacing
+    @include breakpoint(xs) {
+      margin: 0 0 8px;
+    }
   }
 
   &__time {
@@ -75,18 +235,34 @@
 
     &--left-side {
       justify-content: flex-end;
+
+      // Tablet: hide left-side chips (they're on the opposite side from cards)
+      @include breakpoint(md) {
+        display: none;
+      }
     }
 
     &--right-side {
       justify-content: flex-start;
     }
+    
+    &--on-card-side {
+      // Hide on desktop (only show opposite-side chips)
+      display: none;
+      
+      // Show on tablet/mobile (chips move to same side as card)
+      @include breakpoint(md) {
+        display: flex;
+      }
+    }
   }
 
   &__date-badge {
-    line-height: 1;
     padding: 8px 12px;
     border-radius: 999px;
+    line-height: 1;
     white-space: nowrap;
+
     @include themify($themes) {
       background: linear-gradient(to right, themed(background-blue-regular), themed(background-blue-light));
       color: themed(fixed-white);
@@ -95,6 +271,7 @@
 }
 
 /* Card */
+
 .education-timeline-card {
   position: relative;
   padding: 22px 26px;
@@ -104,7 +281,12 @@
   @include themify($themes) {
     @include bg-opacity(themed(elevated-background), $opacity-medium);
     border: 1px solid themed(stroke-blue-light);
-    box-shadow: 0 6px 22px rgba(0,0,0,.06);
+    box-shadow: 0 6px 22px rgb(0 0 0 / 6%);
+  }
+
+  // Mobile: remove max-width for full width
+  @include breakpoint(xs) {
+    max-width: none;
   }
 
   &__header { position: relative; }
@@ -116,11 +298,13 @@
   }
 
   &__dates { margin-bottom: .4rem; }
-  &__title { margin: .2rem 0 .2rem; }
+
+  &__title { margin: .2rem 0; }
+
   &__subtitle { opacity: .9; }
 
   &__chips {
-    display: flex; gap: 6px; margin-top: .8rem; margin-bottom: 1rem;
+    display: flex; gap: 6px; margin-bottom: 1rem; margin-top: .8rem;
   }
 
   &__block {
@@ -134,26 +318,7 @@
   font-weight: 900;
 
   @include themify($themes) {
-    background-color: themed(background-blue-regular);
     color: themed(fixed-white);
+    background-color: themed(background-blue-regular);
   }
-}
-
-/* Responsive */
-@media (max-width: 780px) {
-  .education-timeline__track { display: none; }
-
-  .education-timeline__row {
-    grid-template-columns: 1fr; /* single column */
-    row-gap: 8px;
-  }
-
-  /* order: dot, time chip, label, card */
-  .education-timeline__cell--center { order: 0; align-items: flex-start; }
-  .education-timeline__cell--left,
-  .education-timeline__cell--right { order: 2; }
-
-  .education-timeline__time { order: 1; justify-content: flex-start !important; }
-  .education-timeline__label { order: 2; }
-  .education-timeline-card { order: 3; max-width: 100%; }
 }

@@ -76,6 +76,7 @@ $breakpoints: (
     [data-theme="#{$theme}"] & {
       $theme-map: $map !global;
       @content;
+
       $theme-map: null !global;
     }
   }
@@ -86,6 +87,7 @@ $breakpoints: (
     &[data-theme="#{$theme}"] {
       $theme-map: $map !global;
       @content;
+
       $theme-map: null !global;
     }
   }

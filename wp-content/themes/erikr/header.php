@@ -60,5 +60,6 @@
         </div>
     </div>
     
+    <?php get_template_part('components/beta-notice-modal'); ?>
 
     <div id="bg-bubbles" aria-hidden="true"></div>

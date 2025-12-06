@@ -2,33 +2,33 @@
 @use "@scss/helpers/mixins" as *;
 
 .mobile-menu-backdrop {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 9999;
+    display: none;
     width: 100vw;
     height: 100vh;
     backdrop-filter: blur(32px);
-    z-index: 9999;
 }
 
 .mobile-menu-container {
-    display: none;
     position: fixed;
     top: 10px;
     right: 10px;
     bottom: 10px;
-    width: 250px;
-    box-shadow: -2px 0 20px -8px rgb(65 78 78 / 25%);
     z-index: 10000;
-    padding: 2.4rem 2rem 2rem 2rem;
-    overflow-y: auto;
+    display: none;
     align-items: center;
-    flex-direction: column;
+    width: 250px;
+    padding: 2.4rem 2rem 2rem;
     border-radius: 32px;
+    box-shadow: -2px 0 20px -8px rgb(65 78 78 / 25%);
+    flex-direction: column;
+    overflow-y: auto;
 
     @include themify($themes) {
-        background: rgba(themed(elevated-background), $opacity-medium);
+        background: rgb(themed(elevated-background), $opacity-medium);
     }
 
     .site-branding {
@@ -38,20 +38,20 @@
 }
 
 .mobile-menu-nav {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 3rem 0;
-    text-align: center;
     display: flex;
+    margin: 0 0 3rem;
+    padding: 0;
+    text-align: center;
     flex-direction: column;
-    gap: 2rem
+    gap: 2rem;
+    list-style: none
 }
 
 .mobile-menu-ctas {
     display: flex;
+    width: 100%;
+    box-sizing: border-box;
     flex-direction: column;
     gap: 1rem;
-    width: 100%;
     padding-inline: 10px;
-    box-sizing: border-box;
 }

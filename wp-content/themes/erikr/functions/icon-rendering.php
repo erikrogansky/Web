@@ -39,6 +39,29 @@ function render_icon($url, $alt = '') {
     ];
     $svg = wp_kses($svg, $allowed);
 
+    // Add viewBox if missing - AFTER wp_kses so it doesn't get stripped
+    if (strpos($svg, 'viewBox') === false) {
+        $width = null;
+        $height = null;
+        
+        // Try to extract width and height
+        if (preg_match('/width=["\']([0-9.]+)["\']/', $svg, $w_match)) {
+            $width = $w_match[1];
+        }
+        if (preg_match('/height=["\']([0-9.]+)["\']/', $svg, $h_match)) {
+            $height = $h_match[1];
+        }
+        
+        // Add viewBox if we found both dimensions
+        if ($width && $height) {
+            $svg = preg_replace('/<svg/', '<svg viewBox="0 0 '.$width.' '.$height.'"', $svg, 1);
+        }
+    }
+
+    // Remove fixed width/height attributes so SVG scales with CSS
+    $svg = preg_replace('/<svg([^>]*)\s+width=["\'][^"\']*["\']/', '<svg$1', $svg);
+    $svg = preg_replace('/<svg([^>]*)\s+height=["\'][^"\']*["\']/', '<svg$1', $svg);
+
     if ($alt !== '') {
         if (strpos($svg, '<title') === false) {
             $svg = preg_replace('/<svg\b([^>]*)>/', '<svg$1 role="img"><title>'.esc_html($alt).'</title>', $svg, 1);

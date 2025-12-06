@@ -171,6 +171,13 @@ class Education_Timeline extends Widget_Base {
                         <!-- Left cell -->
                         <div class="education-timeline__cell education-timeline__cell--left">
                             <?php if ($left_has_card): ?>
+                                <!-- Chip/badge for mobile/tablet -->
+                                <?php if ($badge): ?>
+                                    <div class="education-timeline__time education-timeline__time--on-card-side">
+                                        <span class="education-timeline__date-badge paragraph paragraph--small font-weight-800"><?= esc_html($badge) ?></span>
+                                    </div>
+                                <?php endif; ?>
+                                
                                 <?php if ($label): ?>
                                     <div class="education-timeline__label subtitle font-weight-900"><?= esc_html($label) ?></div>
                                 <?php endif; ?>
@@ -232,6 +239,13 @@ class Education_Timeline extends Widget_Base {
                         <!-- Right cell -->
                         <div class="education-timeline__cell education-timeline__cell--right">
                             <?php if ($right_has_card): ?>
+                                <!-- Chip/badge for mobile/tablet -->
+                                <?php if ($badge): ?>
+                                    <div class="education-timeline__time education-timeline__time--on-card-side">
+                                        <span class="education-timeline__date-badge paragraph paragraph--small font-weight-800"><?= esc_html($badge) ?></span>
+                                    </div>
+                                <?php endif; ?>
+                                
                                 <?php if ($label): ?>
                                     <div class="education-timeline__label subtitle font-weight-900"><?= esc_html($label) ?></div>
                                 <?php endif; ?>
