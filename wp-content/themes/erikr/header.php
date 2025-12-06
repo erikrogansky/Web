@@ -11,7 +11,10 @@
             document.documentElement.setAttribute('data-theme', theme);
         })();
     </script>
-    <?php wp_head(); ?>
+    <?php
+      wp_head();
+      wp_title()
+    ?>
 </head>
 <body <?php body_class(); ?>> 
     <header class="site-header">
