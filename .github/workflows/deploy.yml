@@ -15,13 +15,15 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 18
 
       - name: Install and build theme
         working-directory: wp-content/themes/erikr
         run: |
           npm install
-          npm run build   # produces dist/
+          npm run build
+          echo "Built files:"
+          ls -R
 
       - name: Add Hostinger to known_hosts
         run: |
@@ -39,11 +41,20 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
 
-      - name: Upload built files (dist → hostinger/public_html/wp-content/themes/erikr/dist)
+      - name: Upload built files (public/dist → hostinger/public_html/wp-content/themes/erikr/public/dist)
         working-directory: wp-content/themes/erikr
         run: |
-          ssh -p "$PORT" "$USER@$HOST" "mkdir -p public_html/wp-content/themes/erikr/dist"
-          scp -P "$PORT" -r dist/* "$USER@$HOST:public_html/wp-content/themes/erikr/dist/"
+          if [ ! -d public/dist ]; then
+            echo "ERROR: public/dist directory not found. Check your build config (outDir)."
+            ls
+            ls public || true
+            exit 1
+          fi
+
+          ssh -p "$PORT" "$USER@$HOST" "mkdir -p public_html/wp-content/themes/erikr/public/dist"
+
+          scp -P "$PORT" -r public/dist/* \
+            "$USER@$HOST:public_html/wp-content/themes/erikr/public/dist/"
         env:
           USER: ${{ secrets.HOSTINGER_USER }}
           HOST: ${{ secrets.HOSTINGER_HOST }}
