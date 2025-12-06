@@ -15,9 +15,9 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18  # or your version
+          node-version: 24
 
-      - name: Install and build
+      - name: Install and build theme
         working-directory: wp-content/themes/erikr
         run: |
           npm install
@@ -39,9 +39,11 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
 
-      - name: Upload built files (dist → hostinger/public_html/theme)
+      - name: Upload built files (dist → hostinger/public_html/wp-content/themes/erikr/dist)
+        working-directory: wp-content/themes/erikr
         run: |
-          scp -P "$PORT" -r dist/* "$USER@$HOST:public_html/wp-content/themes/your-theme/"
+          ssh -p "$PORT" "$USER@$HOST" "mkdir -p public_html/wp-content/themes/erikr/dist"
+          scp -P "$PORT" -r dist/* "$USER@$HOST:public_html/wp-content/themes/erikr/dist/"
         env:
           USER: ${{ secrets.HOSTINGER_USER }}
           HOST: ${{ secrets.HOSTINGER_HOST }}
