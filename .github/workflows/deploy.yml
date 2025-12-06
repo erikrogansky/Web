@@ -18,6 +18,7 @@ jobs:
           node-version: 18  # or your version
 
       - name: Install and build
+        working-directory: wp-content/themes/erikr
         run: |
           npm install
           npm run build   # produces dist/
