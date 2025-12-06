@@ -145,8 +145,10 @@ const handleToggle = () => {
 if (toggle) toggle.addEventListener("click", handleToggle);
 if (mobileToggle) mobileToggle.addEventListener("click", handleToggle);
 
+// Apply saved theme BEFORE page renders to prevent color flash
 const saved = (localStorage.getItem("theme") as "light" | "dark") || "light";
-setTheme(saved);
+document.documentElement.setAttribute("data-theme", saved);
+setLabelsForTheme(saved);
 if (saved === "light") {
     instantlyShow(iconMoon);
     instantlyHide(iconSun);
@@ -158,3 +160,8 @@ if (saved === "light") {
     instantlyShow(iconSunMobile);
     instantlyHide(iconMoonMobile);
 }
+
+// Enable transitions after initial theme is set
+requestAnimationFrame(() => {
+    document.documentElement.classList.add("transitions-enabled");
+});
