@@ -4,6 +4,13 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="https://gmpg.org/xfn/11">
+    <script>
+        // Apply theme IMMEDIATELY before any CSS loads to prevent color flash
+        (function() {
+            var theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>> 

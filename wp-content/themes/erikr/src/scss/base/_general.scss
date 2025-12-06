@@ -7,7 +7,7 @@ html {
     }
 }
 
-html.transitions-enabled * {
+html * {
     transition: all 0.3s ease;
 }
 
