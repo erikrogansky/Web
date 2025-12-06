@@ -242,10 +242,14 @@ function er_send_contact_form_email($data) {
     $to = $data['to'];
     $subject = sprintf('[Contact Form] %s - %s', ucfirst($data['reason']), $data['name']);
     
+    // Use SMTP_FROM if available, otherwise fall back to admin_email
+    $from_email = defined('SMTP_FROM') ? SMTP_FROM : (getenv('SMTP_FROM') ?: get_option('admin_email'));
+    $from_name = defined('SMTP_FROM_NAME') ? SMTP_FROM_NAME : (getenv('SMTP_FROM_NAME') ?: get_bloginfo('name'));
+    
     // Email headers
     $headers = [
         'Content-Type: text/html; charset=UTF-8',
-        'From: ' . get_bloginfo('name') . ' <' . get_option('admin_email') . '>',
+        'From: ' . $from_name . ' <' . $from_email . '>',
         'Reply-To: ' . $data['name'] . ' <' . $data['email'] . '>',
     ];
     
