@@ -1,4 +1,10 @@
 <?php
+function mytheme_setup() {
+    // Let WordPress manage the document title
+    add_theme_support( 'title-tag' );
+}
+add_action( 'after_setup_theme', 'mytheme_setup' );
+
 function mytheme_register_menus() {
     register_nav_menus( array(
         'header_menu' => __( 'Header', 'erikr' ),
