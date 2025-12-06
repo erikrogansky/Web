@@ -35,14 +35,6 @@ class Experience_Timeline extends Widget_Base {
          * ----------------------------- */
         $this->start_controls_section('cards_section', ['label' => 'Cards']);
 
-        $tool_rep = new Repeater();
-        $tool_rep->add_control('tool_text', [
-            'label' => 'Toolkit Item',
-            'type'  => Controls_Manager::TEXT,
-            'label_block' => true,
-            'default' => '',
-        ]);
-
         $card = new Repeater();
 
         $card->add_control('start', [
@@ -84,10 +76,12 @@ class Experience_Timeline extends Widget_Base {
             'placeholder' => 'What I do…',
         ]);
         $card->add_control('toolkit', [
-            'label' => 'Toolkit (chips)',
-            'type'  => Controls_Manager::REPEATER,
-            'fields'=> $tool_rep->get_controls(),
-            'title_field' => '{{{ tool_text || "(tool)" }}}',
+            'label' => 'Toolkit (comma-separated)',
+            'type'  => Controls_Manager::TEXT,
+            'label_block' => true,
+            'default' => '',
+            'placeholder' => 'Figma, React, TypeScript, WordPress',
+            'description' => 'Enter toolkit items separated by commas',
         ]);
         $card->add_control('what_i_learned', [
             'label' => 'What I’ve learned',
@@ -179,7 +173,9 @@ class Experience_Timeline extends Widget_Base {
                         $chips_raw = trim($c['chips'] ?? '');
                         $chips = $chips_raw ? array_map('trim', explode(',', $chips_raw)) : [];
                         
-                        $tools = is_array($c['toolkit'] ?? null) ? $c['toolkit'] : [];
+                        // Parse comma-separated toolkit
+                        $tools_raw = trim($c['toolkit'] ?? '');
+                        $tools = $tools_raw ? array_map('trim', explode(',', $tools_raw)) : [];
 
                         $how    = isset($c['how_started']) ? $c['how_started'] : '';
                         $what   = isset($c['what_i_do']) ? $c['what_i_do'] : '';
@@ -226,10 +222,9 @@ class Experience_Timeline extends Widget_Base {
                                 <div class="timeline-card__block">
                                     <div class="timeline-card__label paragraph font-weight-700">Toolkit: </div>
                                     <div class="timeline-card__chips">
-                                        <?php foreach ($tools as $tool):
-                                            $tx = trim($tool['tool_text'] ?? '');
-                                            if (!$tx) continue; ?>
-                                            <span class="chip chip--tool paragraph paragraph--micro font-weight-900"><?= esc_html($tx) ?></span>
+                                        <?php foreach ($tools as $tool_text):
+                                            if (!$tool_text) continue; ?>
+                                            <span class="chip chip--tool paragraph paragraph--micro font-weight-900"><?= esc_html($tool_text) ?></span>
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
