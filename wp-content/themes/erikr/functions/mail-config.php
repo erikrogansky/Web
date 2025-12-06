@@ -14,7 +14,8 @@ if (!defined('ABSPATH')) exit;
 add_action('phpmailer_init', 'er_configure_smtp');
 
 function er_configure_smtp($phpmailer) {
-    $smtp_host = getenv('SMTP_HOST');
+    // Support both PHP constants (production) and environment variables (Docker)
+    $smtp_host = defined('SMTP_HOST') ? SMTP_HOST : getenv('SMTP_HOST');
     
     // If no SMTP host configured, use default mail()
     if (empty($smtp_host)) {
@@ -24,17 +25,17 @@ function er_configure_smtp($phpmailer) {
     // Use SMTP
     $phpmailer->isSMTP();
     $phpmailer->Host = $smtp_host;
-    $phpmailer->Port = getenv('SMTP_PORT') ?: 1025;
+    $phpmailer->Port = defined('SMTP_PORT') ? SMTP_PORT : (getenv('SMTP_PORT') ?: 1025);
     
     // Only use authentication if credentials are provided
-    $smtp_user = getenv('SMTP_USER');
-    $smtp_pass = getenv('SMTP_PASS');
+    $smtp_user = defined('SMTP_USER') ? SMTP_USER : getenv('SMTP_USER');
+    $smtp_pass = defined('SMTP_PASS') ? SMTP_PASS : getenv('SMTP_PASS');
     
     if (!empty($smtp_user) && !empty($smtp_pass)) {
         $phpmailer->SMTPAuth = true;
         $phpmailer->Username = $smtp_user;
         $phpmailer->Password = $smtp_pass;
-        $smtp_secure = getenv('SMTP_SECURE');
+        $smtp_secure = defined('SMTP_SECURE') ? SMTP_SECURE : getenv('SMTP_SECURE');
         if ($smtp_secure) {
             $phpmailer->SMTPSecure = $smtp_secure;
         }
@@ -43,8 +44,8 @@ function er_configure_smtp($phpmailer) {
         $phpmailer->SMTPAuth = false;
     }
     
-    $phpmailer->From = getenv('SMTP_FROM') ?: get_option('admin_email');
-    $phpmailer->FromName = getenv('SMTP_FROM_NAME') ?: get_bloginfo('name');
+    $phpmailer->From = defined('SMTP_FROM') ? SMTP_FROM : (getenv('SMTP_FROM') ?: get_option('admin_email'));
+    $phpmailer->FromName = defined('SMTP_FROM_NAME') ? SMTP_FROM_NAME : (getenv('SMTP_FROM_NAME') ?: get_bloginfo('name'));
     
     // Timeout settings to prevent hanging
     $phpmailer->Timeout = 10;

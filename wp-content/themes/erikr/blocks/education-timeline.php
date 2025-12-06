@@ -131,8 +131,11 @@ class Education_Timeline extends Widget_Base {
         $cards = is_array($s['cards'] ?? null) ? $s['cards'] : [];
         $block_title = trim($s['block_title'] ?? '');
 
+        // Generate section ID from block title
+        $section_id = $block_title ? sanitize_title($block_title) : '';
+
         ?>
-        <section class="education-timeline education-timeline--grid">
+        <section class="education-timeline education-timeline--grid"<?= $section_id ? ' id="' . esc_attr($section_id) . '"' : '' ?>>
             <?php if ($block_title): ?>
                 <h2 class="education-timeline__heading text-center"><?= esc_html($block_title) ?></h2>
             <?php endif; ?>

@@ -162,8 +162,11 @@ class Experience_Timeline extends Widget_Base {
         $cta_rel = trim(($cta_is_ext ? 'noopener' : '') . ' ' . ($cta_nof ? 'nofollow' : ''));
         $cta_rel = $cta_rel ? ' rel="' . esc_attr($cta_rel) . '"' : '';
 
+        // Generate section ID from block title
+        $section_id = $block_title ? sanitize_title($block_title) : '';
+
         ?>
-        <section class="timeline">
+        <section class="timeline"<?= $section_id ? ' id="' . esc_attr($section_id) . '"' : '' ?>>
             <?php if ($block_title): ?>
                 <h2 class="timeline__heading text-center"><?= esc_html($block_title) ?></h2>
             <?php endif; ?>

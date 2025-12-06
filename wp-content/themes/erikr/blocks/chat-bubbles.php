@@ -68,8 +68,12 @@ class Chat_Bubbles_Block extends Widget_Base {
         $s = $this->get_settings_for_display();
         $title = $s['title'] ?? '';
         $items = $s['items'] ?? [];
+
+        // Generate section ID from title
+        $section_id = $title ? sanitize_title($title) : '';
+
         ?>
-        <section class="chat-bubbles">
+        <section class="chat-bubbles"<?= $section_id ? ' id="' . esc_attr($section_id) . '"' : '' ?>>
             <?php if ($title): ?>
                 <h2 class="chat-bubbles__title"><?= esc_html($title) ?></h2>
             <?php endif; ?>

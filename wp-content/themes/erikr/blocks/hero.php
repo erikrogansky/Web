@@ -81,8 +81,14 @@ class Header_Hero extends Widget_Base {
             'outline' => 'btn--outline',
             'link' => 'btn--link',
         ];
+
+        // Generate section ID from title (first line)
+        $title_lines = explode("\n", $title);
+        $first_line = isset($title_lines[0]) ? strip_tags($title_lines[0]) : '';
+        $section_id = $first_line ? sanitize_title($first_line) : '';
+
         ?>
-        <section class="header-hero">
+        <section class="header-hero"<?= $section_id ? ' id="' . esc_attr($section_id) . '"' : '' ?>>
             <div class="header-hero__inner">
                 <div class="header-hero__left">
                     <?php if ($title): ?>

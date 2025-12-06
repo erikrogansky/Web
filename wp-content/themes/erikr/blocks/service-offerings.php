@@ -198,8 +198,13 @@ class Service_Offerings extends Widget_Base {
 
         // Parse tags
         $tag_array = array_filter(array_map('trim', explode(',', $tags)));
+
+        // Generate section ID from master_title or service_title
+        $title_for_id = $master_title ?: $service_title;
+        $section_id = $title_for_id ? sanitize_title($title_for_id) : '';
+
         ?>
-        <section class="service-offerings">
+        <section class="service-offerings"<?= $section_id ? ' id="' . esc_attr($section_id) . '"' : '' ?>>
             <div class="service-offerings__inner">
                 <?php if ($master_title): ?>
                     <h2 class="service-offerings__master-title"><?= esc_html($master_title) ?></h2>

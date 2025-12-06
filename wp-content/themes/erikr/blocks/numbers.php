@@ -81,8 +81,12 @@ class Numbers extends Widget_Base {
             if (($c['number'] ?? '') || ($c['label'] ?? '') || !empty(($c['img']['url'] ?? ''))) { $has_any = true; break; }
         }
         if (!$has_any && $title === '') return;
+
+        // Generate section ID from title
+        $section_id = $title ? sanitize_title($title) : '';
+
         ?>
-        <section class="numbers">
+        <section class="numbers"<?= $section_id ? ' id="' . esc_attr($section_id) . '"' : '' ?>>
             <?php if ($title): ?>
                 <h2 class="numbers__title text-center"><?= esc_html($title) ?></h2>
             <?php endif; ?>

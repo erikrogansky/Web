@@ -195,8 +195,12 @@ class Skills extends Widget_Base {
 
         // Generate unique ID for this block instance
         $block_id = 'skills-' . $this->get_id();
+        
+        // Generate section ID from block title
+        $section_id = $block_title ? sanitize_title($block_title) : $block_id;
+        
         ?>
-        <section class="skills-block" id="<?= esc_attr($block_id) ?>" data-skills-block>
+        <section class="skills-block" id="<?= esc_attr($section_id) ?>" data-skills-block>
             <!-- Featured Category Cards -->
             <?php if (!empty($featured_cats)): ?>
                 <div class="skills-block__featured">

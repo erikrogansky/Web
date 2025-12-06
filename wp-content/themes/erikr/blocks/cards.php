@@ -162,8 +162,12 @@ class Cards extends Widget_Base {
             'outline'          => 'btn--outline',
             'link'             => 'btn--link',
         ];
+
+        // Generate section ID from title
+        $section_id = $title ? sanitize_title($title) : '';
+
         ?>
-        <section class="cards">
+        <section class="cards"<?= $section_id ? ' id="' . esc_attr($section_id) . '"' : '' ?>>
             <div class="cards__inner">
                 <?php if ($title): ?>
                     <h2 class="cards__title"><?= esc_html($title) ?></h2>

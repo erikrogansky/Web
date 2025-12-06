@@ -213,8 +213,12 @@ class Contact_Form extends Widget_Base {
         $site_key = esc_attr($s['recaptcha_site_key'] ?? '');
         
         $widget_id = $this->get_id();
+        
+        // Generate section ID from info title
+        $section_id = $info_title ? sanitize_title($info_title) : 'contact-form-' . $widget_id;
+        
         ?>
-        <section class="contact-form-block" id="contact-form-<?= $widget_id ?>">
+        <section class="contact-form-block" id="<?= esc_attr($section_id) ?>">
             <div class="contact-form-block__inner">
                 
                 <!-- Right Side: Contact Info -->

@@ -129,8 +129,11 @@ class Banner extends Widget_Base {
         $titleClass = $size === 'small' ? 'h4 font-weight-600' : 'banner__title';
         $descClass = $size === 'small' ? 'subtitle text-center' : 'banner__description subtitle font-weight-600 text-center';
 
+        // Generate section ID from title
+        $section_id = $title ? sanitize_title($title) : '';
+
         ?>
-        <section class="banner<?= esc_attr($sizeClass) ?>">
+        <section class="banner<?= esc_attr($sizeClass) ?>"<?= $section_id ? ' id="' . esc_attr($section_id) . '"' : '' ?>>
             <div class="banner__inner">
                 <?php if ($title): ?>
                     <h2 class="<?= esc_attr($titleClass) ?>" style="<?= esc_attr($maxWidthStyle) ?>"><?= esc_html($title) ?></h2>
