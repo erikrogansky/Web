@@ -15,7 +15,7 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 24   # your version
 
       - name: Install and build theme
         working-directory: wp-content/themes/erikr
@@ -40,6 +40,14 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
         env:
           SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+
+      - name: Update code on server via git pull
+        run: |
+          ssh -p "$PORT" "$USER@$HOST" "cd public_html && git pull origin main"
+        env:
+          USER: ${{ secrets.HOSTINGER_USER }}
+          HOST: ${{ secrets.HOSTINGER_HOST }}
+          PORT: ${{ secrets.HOSTINGER_PORT }}
 
       - name: Upload built files (public/dist → hostinger/public_html/wp-content/themes/erikr/public/dist)
         working-directory: wp-content/themes/erikr
