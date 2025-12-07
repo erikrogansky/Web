@@ -6,7 +6,7 @@
 
   &__list {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin: 0;
     padding: 0;
     flex-wrap: wrap;
@@ -24,6 +24,7 @@
     box-sizing: border-box;
     flex-direction: row;
     gap: 28px;
+    margin-inline: auto;
 
     @include themify($themes) {
       @include bg-opacity(themed(elevated-background), $opacity-light);

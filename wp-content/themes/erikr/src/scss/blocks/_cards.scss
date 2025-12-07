@@ -12,6 +12,14 @@
     gap: 2rem;
     list-style: none;
     margin-bottom: 4.4rem;
+
+    // Only apply responsive adjustments when using space-between layout
+    &--space-between {
+      @media (max-width: 1024px) {
+        justify-content: center !important;
+        gap: 2rem;
+      }
+    }
   }
 
   &__item {

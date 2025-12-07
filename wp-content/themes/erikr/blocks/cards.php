@@ -174,7 +174,14 @@ class Cards extends Widget_Base {
                 <?php endif; ?>
 
                 <?php if ($cards): ?>
-                    <ul class="cards__list" style="justify-content: <?= esc_attr($s['card_justify'] ?? 'center') ?>; <?= isset($s['card_gap']['size']) ? 'gap: ' . esc_attr($s['card_gap']['size'] . $s['card_gap']['unit']) . ';' : '' ?>">
+                    <?php 
+                        $justify = $s['card_justify'] ?? 'center';
+                        $list_class = 'cards__list';
+                        if ($justify === 'space-between') {
+                            $list_class .= ' cards__list--space-between';
+                        }
+                    ?>
+                    <ul class="<?= esc_attr($list_class) ?>" style="justify-content: <?= esc_attr($justify) ?>; <?= isset($s['card_gap']['size']) ? 'gap: ' . esc_attr($s['card_gap']['size'] . $s['card_gap']['unit']) . ';' : '' ?>">
                         <?php foreach ($cards as $c):
                             $icon = $c['card_icon']['url'] ?? '';
                             $ct   = trim($c['card_title'] ?? '');
