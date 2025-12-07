@@ -340,7 +340,7 @@ class Skills extends Widget_Base {
             <!-- Show More Button -->
             <?php if (count($skills) > 6): ?>
                 <div class="skills-block__footer">
-                    <button class="skills-block__show-more" data-show-more>
+                    <button class="skills-block__show-more btn btn--outline btn--small" data-show-more>
                         <span data-show-more-text>Show more</span>
                         <svg class="skills-block__show-more-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

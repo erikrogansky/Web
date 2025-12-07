@@ -101,9 +101,30 @@
     }
 
     &--outline {
-        @include bg-opacity($white, $opacity-light);
-        border: 1px solid $stroke-gray-light;
-        color: $text-regular;
+        @include themify($themes) {
+            @include bg-opacity(themed(elevated-background), $opacity-light);
+            border: 1px solid themed(stroke-gray-light);
+            color: themed(text-regular);
+        }
+
+        span {
+            @include themify($themes) {
+                color: themed(text-regular);
+            }
+        }
+
+        &:hover,
+        &:focus {
+            @include themify($themes) {
+                @include bg-opacity(themed(background-gray-regular), $opacity-extra-light);
+            }
+        }
+
+        &:active {
+            @include themify($themes) {
+                @include bg-opacity(themed(background-gray-regular), $opacity-light);
+            }
+        }
     }
 
     &--tertiary {
