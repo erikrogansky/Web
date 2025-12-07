@@ -13,8 +13,11 @@ get_header();
             <header class="text-page__header">
                 <h1 class="text-page__title"><?php the_title(); ?></h1>
                 <?php if ( get_the_modified_time() ) : ?>
+                    <p class="text-page__meta paragraph paragraph--small" style="margin-bottom: 6px;">
+                        Last Updated: <time datetime="<?php echo get_the_modified_date('c'); ?>"><?php echo get_the_modified_date(); ?></time>
+                    </p>
                     <p class="text-page__meta paragraph paragraph--small">
-                        Last updated: <time datetime="<?php echo get_the_modified_date('c'); ?>"><?php echo get_the_modified_date(); ?></time>
+                        Effective Date: <time datetime="<?php echo get_the_modified_date('c'); ?>"><?php echo get_the_modified_date(); ?></time>
                     </p>
                 <?php endif; ?>
             </header>
