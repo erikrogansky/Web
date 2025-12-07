@@ -1,0 +1,187 @@
+@use '@scss/base/variables' as *;
+@use '@scss/helpers/mixins' as *;
+
+.text-page {
+    max-width: 1216px;
+    margin: 0 auto;
+    padding: 60px 60px;
+
+    @include breakpoint('md') {
+        padding: 60px 16px;
+    }
+
+    &__header {
+        margin-bottom: 50px;
+
+        @include breakpoint('md') {
+            margin-bottom: 40px;
+        }
+    }
+
+    &__title {
+        margin-bottom: 12px;
+
+        @include themify($themes) {
+            color: themed(text-blue);
+        }
+    }
+
+    &__meta {
+        @include themify($themes) {
+            color: themed(text-muted);
+        }
+    }
+
+    &__body {
+        max-width: 700px;
+
+        h2 {
+            margin-top: 50px;
+            margin-bottom: 20px;
+
+            @include themify($themes) {
+                color: themed(text-blue);
+            }
+
+            @include breakpoint('md') {
+                margin-top: 40px;
+            }
+        }
+
+        h3 {
+            margin-top: 40px;
+            margin-bottom: 16px;
+
+            @include themify($themes) {
+                color: themed(text-blue);
+            }
+
+            @include breakpoint('md') {
+                margin-top: 32px;
+            }
+        }
+
+        h4 {
+            margin-top: 32px;
+            margin-bottom: 12px;
+
+            @include themify($themes) {
+                color: themed(text-blue);
+            }
+
+            @include breakpoint('md') {
+                margin-top: 24px;
+            }
+        }
+
+        p, ul, ol {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+
+            @include breakpoint('md') {
+                font-size: 1.6rem;
+            }
+        }
+
+        ul, ol {
+            padding-left: 24px;
+
+            li {
+                margin-bottom: 8px;
+            }
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        table {
+            width: 100%;
+            margin: 50px 0;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 14px;
+            overflow: hidden;
+            backdrop-filter: blur(16px);
+            //box-shadow: 0 2px 20px -8px rgb(65 78 78 / 25%);
+
+            @include themify($themes) {
+                @include bg-opacity(themed(elevated-background), $opacity-medium);
+                border: 1px solid themed(stroke-blue-light);
+            }
+
+            @include breakpoint('md') {
+                margin: 40px 0;
+                font-size: 1.4rem;
+            }
+
+            thead {
+                th {
+                    padding: 22px 26px;
+                    text-align: left;
+                    font-weight: 700;
+                    font-size: 1.6rem;
+                    border: none !important;
+
+                    @include themify($themes) {
+                        color: themed(text-blue);
+                        background-color: themed(background-blue-2x-light);
+                    }
+
+                    @include breakpoint('md') {
+                        padding: 16px 20px;
+                        font-size: 1.4rem;
+                    }
+
+                    &:first-child {
+                        border-top-left-radius: 14px;
+                    }
+
+                    &:last-child {
+                        border-top-right-radius: 14px;
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    border: none !important;
+
+                    &:not(:last-child) td {
+                        @include themify($themes) {
+                            border-bottom: 1px solid themed(stroke-blue-light);
+                        }
+                    }
+
+                    &:hover {
+                        @include themify($themes) {
+                            background-color: rgb(themed(background-blue-regular), 0.05);
+                        }
+                    }
+                }
+
+                td {
+                    padding: 22px 26px;
+                    font-size: 1.6rem;
+                    border: none !important;
+
+                    @include themify($themes) {
+                        color: themed(text-regular);
+                    }
+
+                    @include breakpoint('md') {
+                        padding: 16px 20px;
+                        font-size: 1.4rem;
+                    }
+                }
+            }
+
+            // Override any Gutenberg/WordPress default table styles
+            &,
+            * {
+                border-color: transparent !important;
+            }
+        }
+    }
+}
