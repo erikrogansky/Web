@@ -59,6 +59,7 @@ jobs:
             exit 1
           fi
 
+          ssh -p "$PORT" "$USER@$HOST" "rm -rf public_html/wp-content/themes/erikr/public/dist/*"
           ssh -p "$PORT" "$USER@$HOST" "mkdir -p public_html/wp-content/themes/erikr/public/dist"
 
           scp -P "$PORT" -r public/dist/* \
