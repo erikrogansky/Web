@@ -4,6 +4,20 @@
 .chat-bubbles {
   &__title {
     text-align: center;
+
+    @include breakpoint('xl') {
+      margin-bottom: 4rem;
+    }
+
+    @include breakpoint('md') {
+      margin-bottom: 5rem;
+    }
+  }
+
+  &__list {
+    @include breakpoint('md') {
+      margin-top: 24px;
+    }
   }
 
   &__item {
@@ -11,53 +25,48 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
-    gap: 1.6rem;
-    margin-bottom: 3rem;
+    gap: clamp(1.2rem, 2vw, 2.4rem);
+    margin-bottom: clamp(3rem, 5vw, 6rem);
 
     &:last-child {
       margin-bottom: 0;
     }
 
-    @media (max-width: 768px) {
-      gap: 1rem;
-      margin-bottom: 2rem;
+    @include breakpoint(md) {
+      align-items: flex-start;
     }
 
-    @media (max-width: 480px) {
-      gap: 0.8rem;
-      margin-bottom: 1.5rem;
+    @include breakpoint(440px) {
+      gap: 1rem;
     }
   }
 
   &__container {
       display: flex;
       flex-direction: column;
-      margin-bottom: -40px;
-      max-width: 700px;
+      margin-bottom: clamp(-2rem, -3vw, -4rem);
+      max-width: min(700px, 60%);
 
-      @media (max-width: 768px) {
-        max-width: 500px;
+      @include breakpoint(xl) {
+        max-width: min(600px, 65%);
       }
 
-      @media (max-width: 480px) {
+      @include breakpoint(md) {
+        max-width: min(500px, 70%);
+        margin-bottom: -2rem;
+      }
+
+      @include breakpoint(440px) {
         max-width: 100%;
-        margin-bottom: -30px;
+        margin-bottom: -1.5rem;
       }
 
       &--left {
           align-items: flex-end;
 
           svg {
-            margin-right: 3rem;
+            margin-right: clamp(1.5rem, 2.5vw, 3rem);
             transform: scaleX(-1);
-
-            @media (max-width: 768px) {
-              margin-right: 2rem;
-            }
-
-            @media (max-width: 480px) {
-              margin-right: 1rem;
-            }
           }
       }
 
@@ -65,15 +74,7 @@
           align-items: flex-start;
 
             svg {
-                margin-left: 3rem;
-
-                @media (max-width: 768px) {
-                  margin-left: 2rem;
-                }
-
-                @media (max-width: 480px) {
-                  margin-left: 1rem;
-                }
+                margin-left: clamp(1.5rem, 2.5vw, 3rem);
             }
       }
 
@@ -103,21 +104,16 @@
   }
 
   &__bubble {
-    padding: 2.6rem 4.8rem;
-    border-radius: 28px;
-
-    @media (max-width: 768px) {
-      padding: 2rem 3rem;
-    }
-
-    @media (max-width: 480px) {
-      padding: 1.5rem 2rem;
-      border-radius: 20px;
-    }
+    padding: clamp(1.5rem, 2.5vw, 2.6rem) clamp(2rem, 4vw, 4.8rem);
+    border-radius: clamp(20px, 2.5vw, 28px);
 
     ul, ol {
       margin-left: 0;
       padding-left: 2rem;
+
+      @include breakpoint(440px) {
+        padding-left: 1.5rem;
+      }
 
       li {
         &::marker {
@@ -159,24 +155,23 @@
 
   &__icon {
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include breakpoint(440px) {
+      display: none;
+    }
 
     > svg {
-        width: 270px !important;
-        height: 270px !important;
+        width: clamp(120px, 20vw, 270px) !important;
+        height: clamp(120px, 20vw, 270px) !important;
+        max-width: 270px !important;
+        max-height: 270px !important;
 
-        @media (max-width: 1024px) {
-          width: 200px !important;
-          height: 200px !important;
-        }
-
-        @media (max-width: 768px) {
-          width: 150px !important;
-          height: 150px !important;
-        }
-
-        @media (max-width: 480px) {
-          width: 100px !important;
-          height: 100px !important;
+        @include breakpoint(440px) {
+          width: clamp(80px, 18vw, 120px) !important;
+          height: clamp(80px, 18vw, 120px) !important;
         }
 
         path {

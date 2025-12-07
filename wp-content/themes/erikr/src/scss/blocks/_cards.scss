@@ -13,12 +13,8 @@
     list-style: none;
     margin-bottom: 4.4rem;
 
-    // Only apply responsive adjustments when using space-between layout
     &--space-between {
-      @media (max-width: 1024px) {
-        justify-content: center !important;
-        gap: 2rem;
-      }
+      justify-content: center !important;
     }
   }
 
@@ -28,6 +24,10 @@
     border-radius: 24px;
     flex-direction: column;
     gap: 2rem;
+
+    .cards__list--space-between & {
+      margin-inline: auto;
+    }
 
     &--bg {
       padding: 4.2rem 1.2rem;

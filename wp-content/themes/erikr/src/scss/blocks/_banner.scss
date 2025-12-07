@@ -14,7 +14,13 @@
 
   &__actions {
     display: flex;
+    flex-wrap: wrap;
     gap: 12px;
+    justify-content: center;
+
+    .btn {
+      flex: 1 1 auto;
+    }
   }
 
   &--small {
