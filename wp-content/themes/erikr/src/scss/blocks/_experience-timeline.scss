@@ -13,21 +13,81 @@
     margin-bottom: 180px;
   }
 
-  &__item {
-    &--left {
-        margin-right: auto;
+  &__row {
+    position: relative;
+    display: flex;
+
+    &.timeline__item--left {
+      justify-content: flex-start;
     }
 
-    &--right {
-        margin-left: auto;
+    &.timeline__item--right {
+      justify-content: flex-end;
+    }
+
+    &--first {
+      .timeline__connector-wrapper {
+        top: 0;
+        height: 100%;
+      }
+    }
+
+    &--last {
+      .timeline__cta-connector {
+        position: absolute;
+        left: calc(50% + 197px);
+        top: calc(100% - 170px);
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 469px;
+        height: auto;
+        pointer-events: none;
+        z-index: 0;
+
+        &.timeline__item--flip {
+          transform: translateX(50%) scaleX(-1);
+          right: calc(50% + 197px);
+          left: auto;
+        }
+      }
     }
   }
 
+  &__connector-wrapper {
+    position: absolute;
+    left: 50%;
+    top: -100px; // adjust to match your gap size
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 865px;
+    height: calc(100% + 100px);
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+
+    &.timeline__item--flip {
+      transform: translateX(-50%) scaleX(-1);
+    }
+  }
+
+  &__connector {
+    width: 100%;
+    height: auto;
+  }
+
+  &__item {
+    position: relative;
+    z-index: 1;
+  }
+
   &__cta {
+    position: relative;
     margin: 0 auto;
     max-width: 404px;
 
     & .timeline-card {
+      position: relative;
+      z-index: 1;
       display: flex;
       align-items: center;
       flex-direction: column;
@@ -43,6 +103,7 @@
   padding: 22px 26px;
   border-radius: 14px;
   max-width: 606px;
+  backdrop-filter: blur(4px);
 
   @include themify($themes) {
     @include bg-opacity(themed(elevated-background), $opacity-medium);

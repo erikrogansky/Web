@@ -165,6 +165,7 @@ class Experience_Timeline extends Widget_Base {
                 <div class="timeline__list">
                     <?php foreach ($cards as $i => $c):
                         $side = ($i % 2 === 0) ? 'left' : 'right';
+                        $flip = ($i % 2 !== 0) ? ' timeline__item--flip' : '';
                         $start = trim($c['start'] ?? '');
                         $end   = trim($c['end'] ?? '');
                         $pos   = trim($c['position'] ?? '');
@@ -180,8 +181,20 @@ class Experience_Timeline extends Widget_Base {
                         $how    = isset($c['how_started']) ? $c['how_started'] : '';
                         $what   = isset($c['what_i_do']) ? $c['what_i_do'] : '';
                         $learn  = isset($c['what_i_learned']) ? $c['what_i_learned'] : '';
+                        $is_last = ($i === count($cards) - 1);
                     ?>
-                    <article class="timeline__item timeline__item--<?= esc_attr($side) ?>">
+                    <div class="timeline__row timeline__item--<?= esc_attr($side) ?><?= $i === 0 ? ' timeline__row--first' : '' ?><?= $is_last ? ' timeline__row--last' : '' ?>">
+                        <div class="timeline__connector-wrapper<?= esc_attr($flip) ?>">
+                            <svg class="timeline__connector" xmlns="http://www.w3.org/2000/svg" width="865" height="1020" viewBox="0 0 865 1020" fill="none" aria-hidden="true">
+                                <path d="M2 0C2 704.5 862.5 -159.5 862.5 532V1020" stroke="#87E3E5" stroke-width="4" stroke-dasharray="21 21"/>
+                            </svg>
+                        </div>
+                        <?php if ($is_last): ?>
+                            <svg class="timeline__cta-connector<?= esc_attr($flip) ?>" xmlns="http://www.w3.org/2000/svg" width="469" height="452" viewBox="0 0 469 452" fill="none" aria-hidden="true">
+                                <path d="M466.58 173.18C466.58 489.188 91.5781 228.189 97.5781 90.6901C103.578 -46.8093 296.578 -31.3104 225.578 185.688C154.578 402.686 0.579102 449.182 0.579102 449.182" stroke="#87E3E5" stroke-width="4" stroke-dasharray="21 21"/>
+                            </svg>
+                        <?php endif; ?>
+                        <article class="timeline__item timeline__item--<?= esc_attr($side) ?><?= esc_attr($flip) ?>">
                         <div class="timeline-card">
                             <header class="timeline-card__header">
                                 <div class="timeline-card__dates">
@@ -238,6 +251,7 @@ class Experience_Timeline extends Widget_Base {
                             <?php endif; ?>
                         </div>
                     </article>
+                    </div>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
