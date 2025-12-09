@@ -274,9 +274,17 @@ class Service_Offerings extends Widget_Base {
                                         type="button"
                                     >
                                         <span><?= esc_html($faq_title) ?></span>
-                                        <svg class="service-offerings__faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="12" cy="12" r="11.5" stroke="currentColor"/>
-                                            <path d="M12 7v10M7 12h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                        <svg class="service-offerings__faq-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                                            <g clip-path="url(#clip0_2116_3034_<?= $index ?>)">
+                                                <path d="M11.0002 20.1663C16.0628 20.1663 20.1668 16.0623 20.1668 10.9997C20.1668 5.93706 16.0628 1.83301 11.0002 1.83301C5.93755 1.83301 1.8335 5.93706 1.8335 10.9997C1.8335 16.0623 5.93755 20.1663 11.0002 20.1663Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M11 7.33301V14.6663" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M7.3335 11L11.0002 14.6667L14.6668 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_2116_3034_<?= $index ?>">
+                                                    <rect width="22" height="22" fill="white"/>
+                                                </clipPath>
+                                            </defs>
                                         </svg>
                                     </button>
                                     <div 

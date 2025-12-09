@@ -4,7 +4,6 @@
 .service-offerings {
   &__inner {
     margin: 0 auto;
-    max-width: 890px;
   }
 
   &__master-title {
@@ -15,12 +14,18 @@
   &__header {
     text-align: center;
     margin-bottom: 3.2rem;
+    max-width: 800px;
+    margin-inline: auto;
   }
 
   &__title {
     font-size: 2.8rem;
     font-weight: 800;
     margin-bottom: 1.4rem;
+
+    @include themify($themes) {
+      color: themed(text-blue);
+    }
 
     @include breakpoint('md') {
       font-size: 2.4rem;
@@ -50,7 +55,7 @@
     padding: 8px 16px;
     border-radius: 100px;
     font-size: 1.4rem;
-    font-weight: 500;
+    font-weight: 900;
     
     @include themify($themes) {
       border: 1px solid themed(stroke-blue-regular);
@@ -66,9 +71,11 @@
 
   &__cards {
     display: grid;
-    gap: 2rem;
+    gap: 3.2rem;
     grid-template-columns: 1fr 1fr;
     margin-bottom: 4.8rem;
+    max-width: 900px;
+    margin-inline: auto;
 
     @include breakpoint('md') {
       gap: 1.6rem;
@@ -77,12 +84,13 @@
   }
 
   &__card {
-    padding: 3.2rem 2.4rem;
+    padding: 2.2rem 2.6rem;
     border-radius: 16px;
+    box-shadow: 0 2px 20px -8px rgb(65 78 78 / 20%);
 
     @include themify($themes) {
       @include bg-opacity(themed(elevated-background), $opacity-medium);
-      border: 1px solid themed(stroke-blue-regular);
+      //border: 1px solid themed(stroke-blue-light);
     }
 
     @include breakpoint('md') {
@@ -123,6 +131,8 @@
 
   &__faqs {
     margin-bottom: 4.2rem;
+    max-width: 700px;
+    margin-inline: auto;
   }
 
   &__faq-title {
@@ -160,7 +170,9 @@
     font-family: 'SN Pro', sans-serif;
     font-size: 1.6rem;
     font-weight: 500;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                border-radius 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
 
     @include themify($themes) {
       @include bg-opacity(themed(elevated-background), $opacity-medium);
@@ -176,13 +188,16 @@
     &[aria-expanded="true"] {
       border-radius: 24px 24px 0 0;
       box-shadow: none;
+      transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  border-radius 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
       
       @include themify($themes) {
         background: themed(elevated-background);
       }
       
       .service-offerings__faq-icon {
-        transform: rotate(45deg);
+        transform: rotate(180deg);
       }
     }
 
@@ -197,7 +212,7 @@
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     
     @include themify($themes) {
-      color: themed(text-blue);
+      color: themed(text-muted);
     }
   }
 
