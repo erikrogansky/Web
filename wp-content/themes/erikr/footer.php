@@ -1,7 +1,7 @@
         <footer class="site-footer">
             <a href="/" class="site-branding not-selectable clickable">
                 <span class="site-title">Erik Roganský</span>
-                <span class="site-description">UX/UI Designer • Developer • Translator</span>
+                <span class="site-description">Product Designer • Developer • Translator</span>
             </a>
 
             <?php

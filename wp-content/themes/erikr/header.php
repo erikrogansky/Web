@@ -17,7 +17,7 @@
     <header class="site-header">
         <a id="header-site-branding" href="/" class="site-branding not-selectable clickable">
             <span class="site-title">Erik Roganský</span>
-            <span class="site-description">UX/UI Designer • Developer • Translator</span>
+            <span class="site-description">Product Designer • Developer • Translator</span>
         </a>
 
         <?php
@@ -44,7 +44,7 @@
     <div class="mobile-menu-container">
         <a href="/" class="site-branding not-selectable clickable">
             <span class="site-title">Erik Roganský</span>
-            <span class="site-description">UX/UI Designer • Developer • Translator</span>
+            <span class="site-description">Product Designer • Developer • Translator</span>
         </a>
 
         <?php
@@ -67,6 +67,4 @@
         </div>
     </div>
     
-    <?php get_template_part('components/beta-notice-modal'); ?>
-
     <div id="bg-bubbles" aria-hidden="true"></div>

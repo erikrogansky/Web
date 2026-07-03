@@ -65,6 +65,21 @@ class Header_Hero extends Widget_Base {
             'type' => Controls_Manager::MEDIA,
         ]);
 
+        $this->add_control('dark_image', [
+            'label' => 'Right Image (Dark Mode)',
+            'type' => Controls_Manager::MEDIA,
+        ]);
+
+        $this->add_control('image_size', [
+            'label' => 'Right Image Size',
+            'type' => Controls_Manager::SELECT,
+            'default' => 'default',
+            'options' => [
+                'default' => 'Default',
+                'big' => 'Big',
+            ],
+        ]);
+
         $this->end_controls_section();
     }
 
@@ -74,6 +89,14 @@ class Header_Hero extends Widget_Base {
         $subtitle = isset($s['subtitle']) ? wp_kses_post($s['subtitle']) : '';
         $buttons = is_array($s['buttons'] ?? null) ? $s['buttons'] : [];
         $img = $s['image']['url'] ?? '';
+        $dark_img = $s['dark_image']['url'] ?? '';
+        $img_size = $s['image_size'] ?? 'default';
+        $img_class = 'header-hero__image';
+        if ($img_size === 'big') {
+            $img_class .= ' header-hero__image--big';
+        }
+        $light_img_class = $dark_img ? $img_class . ' header-hero__image--light' : $img_class;
+        $dark_img_class = $img_class . ' header-hero__image--dark';
 
         $map = [
             'primary' => 'btn--primary',
@@ -118,7 +141,10 @@ class Header_Hero extends Widget_Base {
                 </div>
                 <div class="header-hero__right">
                     <?php if ($img): ?>
-                        <img class="header-hero__image" src="<?= esc_url($img) ?>" alt="">
+                        <img class="<?= esc_attr($light_img_class) ?>" src="<?= esc_url($img) ?>" alt="">
+                    <?php endif; ?>
+                    <?php if ($dark_img): ?>
+                        <img class="<?= esc_attr($dark_img_class) ?>" src="<?= esc_url($dark_img) ?>" alt="">
                     <?php endif; ?>
                 </div>
             </div>

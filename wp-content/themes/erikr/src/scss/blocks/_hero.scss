@@ -43,4 +43,20 @@
     height: auto;
     max-width: 380px !important;
   }
+
+  &__image--big {
+    max-width: 460px !important;
+  }
+
+  &__image--dark {
+    display: none;
+  }
+
+  [data-theme='dark'] &__image--light {
+    display: none;
+  }
+
+  [data-theme='dark'] &__image--dark {
+    display: block;
+  }
 }
