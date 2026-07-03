@@ -25,7 +25,9 @@ export class SkillsBlock {
 
     constructor(container: HTMLElement) {
         this.container = container;
-        this.pills = container.querySelectorAll("[data-category]");
+        this.pills = container.querySelectorAll(
+            ".skills-block__pill[data-category]",
+        );
         this.searchInput = container.querySelector("[data-search-input]")!;
         this.skillCards = container.querySelectorAll("[data-skill-card]");
         this.showMoreBtn = container.querySelector("[data-show-more]");
