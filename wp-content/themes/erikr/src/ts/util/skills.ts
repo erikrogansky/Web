@@ -11,6 +11,7 @@ interface SkillCard extends HTMLElement {
 }
 
 export class SkillsBlock {
+    private readonly noResultsText = "No skills found matching your criteria.";
     private container: HTMLElement;
     private pills: NodeListOf<HTMLButtonElement>;
     private searchInput: HTMLInputElement;
@@ -181,12 +182,20 @@ export class SkillsBlock {
             }
         }
 
-        // Show/hide no results message
-        if (visibleCount === 0) {
-            this.noResultsMsg.style.display = "block";
-        } else {
-            this.noResultsMsg.style.display = "none";
+        this.setNoResultsVisibility(visibleCount === 0);
+    }
+
+    private setNoResultsVisibility(isVisible: boolean): void {
+        if (isVisible) {
+            this.noResultsMsg.hidden = false;
+            this.noResultsMsg.setAttribute("aria-hidden", "false");
+            this.noResultsMsg.innerHTML = `<p>${this.noResultsText}</p>`;
+            return;
         }
+
+        this.noResultsMsg.hidden = true;
+        this.noResultsMsg.setAttribute("aria-hidden", "true");
+        this.noResultsMsg.textContent = "";
     }
 
     private toggleShowMore(): void {

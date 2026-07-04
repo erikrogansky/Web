@@ -350,9 +350,7 @@ class Skills extends Widget_Base {
             <?php endif; ?>
 
             <!-- No Results Message -->
-            <div class="skills-block__no-results" data-no-results style="display: none;">
-                <p>No skills found matching your criteria.</p>
-            </div>
+            <div class="skills-block__no-results" data-no-results aria-live="polite" aria-hidden="true" hidden></div>
         </section>
         <?php
     }
