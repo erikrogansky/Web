@@ -49,6 +49,51 @@ wp-content/object-cache.php
 wp-content/wp-cache-config.php
 wp-content/wflogs/
 
+# WordPress core
+/wp-admin/
+/wp-includes/
+
+/index.php
+/license.txt
+/readme.html
+/wp-activate.php
+/wp-blog-header.php
+/wp-comments-post.php
+/wp-config.php
+/wp-config-sample.php
+/wp-cron.php
+/wp-links-opml.php
+/wp-load.php
+/wp-login.php
+/wp-mail.php
+/wp-settings.php
+/wp-signup.php
+/wp-trackback.php
+/xmlrpc.php
+
+# Server / hosting / generated files
+/.htaccess
+/.htaccess.bk
+/.private/
+/default.php
+/wordfence-waf.php
+/llms.txt
+
+# WordPress generated content
+/wp-content/uploads/
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/backups/
+/wp-content/updraft/
+/wp-content/litespeed/
+
+# Plugins should stay local/server-managed
+/wp-content/plugins/
+
+# Hostinger generated MU plugins
+/wp-content/mu-plugins/hostinger-auto-updates.php
+/wp-content/mu-plugins/hostinger-preview-domain.php
+
 # ── Ignore default WP themes
 wp-content/themes/twenty*/
 
@@ -79,3 +124,6 @@ public/dist/
 # ── Sitemaps (usually generated)
 sitemap.xml
 sitemap.xml.gz
+
+# Bot
+/bot/
