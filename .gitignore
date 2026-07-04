@@ -35,6 +35,9 @@ web.config
 robots.txt
 
 # ── WordPress generated / temp
+wp-admin/
+wp-includes/
+wp-content/plugins/
 wp-content/upgrade/
 wp-content/uploads/
 wp-content/cache/
