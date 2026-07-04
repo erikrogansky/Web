@@ -2,6 +2,9 @@
 @use '../helpers/mixins' as *;
 
 .timeline {
+  overflow-x: hidden;
+  overflow-x: clip;
+
   &__heading {
     margin-bottom: 50px;
   }
@@ -97,13 +100,97 @@
       }
     }
   }
+
+  @media (width < 900px) {
+    &__heading {
+      margin-bottom: 40px;
+    }
+
+    &__list {
+      gap: 64px;
+      margin-bottom: 96px;
+    }
+
+    &__row {
+      display: block;
+
+      &.timeline__item--left,
+      &.timeline__item--right {
+        justify-content: stretch;
+      }
+
+      &--first {
+        .timeline__connector-wrapper {
+          top: 0;
+          height: 100%;
+        }
+      }
+
+      &--last {
+        .timeline__cta-connector {
+          top: calc(100% - 92px);
+          left: 50%;
+          right: auto;
+          width: min(72vw, 360px);
+          opacity: 0.55;
+          transform: translateX(-50%);
+
+          &.timeline__item--flip {
+            right: auto;
+            left: 50%;
+            transform: translateX(-50%) scaleX(-1);
+          }
+        }
+      }
+    }
+
+    &__connector-wrapper {
+      top: -64px;
+      left: 50%;
+      width: min(calc(100% - 2rem), 620px);
+      height: calc(100% + 64px);
+      opacity: 0.6;
+    }
+
+    &__item {
+      display: block;
+      width: 100%;
+    }
+
+    &__cta {
+      width: 100%;
+      max-width: none;
+    }
+  }
+
+  @media (width < 560px) {
+    &__list {
+      gap: 48px;
+      margin-bottom: 72px;
+    }
+
+    &__connector-wrapper {
+      top: -48px;
+      width: min(calc(100% - 1rem), 440px);
+      height: calc(100% + 48px);
+    }
+
+    &__row--last {
+      .timeline__cta-connector {
+        display: none;
+      }
+    }
+  }
 }
 
 .timeline-card {
   padding: 22px 26px;
   border-radius: 14px;
+  width: 100%;
   max-width: 606px;
+  box-sizing: border-box;
   backdrop-filter: blur(4px);
+  overflow-wrap: anywhere;
 
   @include themify($themes) {
     @include bg-opacity(themed(elevated-background), $opacity-medium);
@@ -116,6 +203,9 @@
   }
 
   &__dates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 .4rem;
     margin-bottom: .4rem;
   }
 
@@ -125,6 +215,7 @@
 
   &__chips {
     display: flex;
+    flex-wrap: wrap;
     gap: 6px;
 
     &:not(.timeline-card__block &) {
@@ -135,7 +226,9 @@
   &__block {
     display: inline-flex;
     align-items: center;
+    max-width: 100%;
     gap: 10px;
+    flex-wrap: wrap;
 
     &:not(:last-of-type) {
       margin-bottom: 1.6rem;
@@ -148,12 +241,35 @@
     }
   }
 
-  &__content {}
+  &__content {
+    min-width: 0;
+  }
+
+  @media (width < 900px) {
+    max-width: none;
+  }
+
+  @media (width < 560px) {
+    padding: 20px 18px;
+
+    &__title {
+      margin-bottom: .8rem;
+    }
+
+    &__block {
+      display: flex;
+      align-items: flex-start;
+      gap: .8rem;
+    }
+  }
 }
 
 .chip {
   padding: 4px 14px;
   border-radius: 100px;
+  max-width: 100%;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 
   @include themify($themes) {
     color: themed(fixed-white);
