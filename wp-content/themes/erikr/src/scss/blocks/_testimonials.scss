@@ -1,0 +1,228 @@
+@use '../base/variables' as *;
+@use '../helpers/mixins' as *;
+
+.testimonials-block {
+  &__header {
+    max-width: 780px;
+    margin: 0 auto 2.8rem;
+    text-align: center;
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__viewport {
+    position: relative;
+  }
+
+  &__rail {
+    display: flex;
+    gap: 2rem;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    margin: 0;
+    padding: 3rem 0;
+    border-block: 1px solid;
+    flex-direction: column;
+    gap: 2rem;
+    scroll-snap-align: start;
+
+    @include themify($themes) {
+      border-color: themed(stroke-blue-light);
+    }
+
+    &::before {
+      content: '“';
+      position: absolute;
+      top: 1.6rem;
+      left: 0;
+      font-size: 8rem;
+      font-weight: 900;
+      line-height: 1;
+      opacity: 0.16;
+
+      @include themify($themes) {
+        color: themed(text-blue);
+      }
+    }
+  }
+
+  &__quote {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    max-width: 900px;
+
+    p {
+      margin: 0;
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1.35;
+
+      @include themify($themes) {
+        color: themed(text-regular);
+      }
+
+      @media (width < 768px) {
+        font-size: 2.1rem;
+      }
+    }
+  }
+
+  &__author {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  &__avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+
+    @include themify($themes) {
+      border: 1px solid themed(stroke-blue-light);
+    }
+  }
+
+  &__author-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  &__name {
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.25;
+    text-decoration: none;
+
+    @include themify($themes) {
+      color: themed(text-regular);
+    }
+  }
+
+  a.testimonials-block__name {
+    &:hover,
+    &:focus {
+      @include themify($themes) {
+        color: themed(link-hover);
+      }
+    }
+  }
+
+  &__meta {
+    font-size: 1.4rem;
+    line-height: 1.35;
+
+    @include themify($themes) {
+      color: themed(text-muted);
+    }
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    margin-top: 1.6rem;
+  }
+
+  &__control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    @include themify($themes) {
+      @include bg-opacity(themed(elevated-background), $opacity-light);
+      border: 1px solid themed(stroke-blue-regular);
+      color: themed(text-blue);
+    }
+
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      transform: translateY(-1px);
+
+      @include themify($themes) {
+        background: themed(background-blue-regular);
+        color: themed(fixed-white);
+      }
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: 0.4;
+    }
+  }
+
+  &--single {
+    .testimonials-block__rail {
+      justify-content: center;
+    }
+
+    .testimonials-block__item {
+      width: min(100%, 960px);
+      padding-inline: clamp(0rem, 4vw, 4rem);
+    }
+  }
+
+  &--multiple {
+    .testimonials-block__viewport {
+      width: 100vw;
+      margin-inline: calc((100% - 100vw) / 2);
+    }
+
+    .testimonials-block__rail {
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      padding-inline: max(1.6rem, calc((100vw - 1216px) / 2));
+      padding-bottom: 0.4rem;
+      scrollbar-width: thin;
+
+      &::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+
+        @include themify($themes) {
+          background: themed(stroke-blue-light);
+        }
+      }
+    }
+
+    .testimonials-block__item {
+      width: min(820px, calc(100vw - 4.8rem));
+      flex: 0 0 min(820px, calc(100vw - 4.8rem));
+      padding-inline: clamp(0rem, 2vw, 2.4rem);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-block__rail,
+  .testimonials-block__control {
+    scroll-behavior: auto;
+    transition: none;
+  }
+}

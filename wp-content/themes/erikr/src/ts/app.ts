@@ -9,10 +9,12 @@ import "@ts/util/smooth-scroll";
 import { initSkillsBlocks } from "@ts/util/skills";
 import { initContactForms } from "@ts/util/contact-form";
 import { initServiceOfferingsFAQ } from "@ts/util/service-offerings";
+import { initTestimonialsBlocks } from "@ts/util/testimonials";
 
-// Initialize skills blocks when DOM is ready
+// Initialize interactive blocks when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
     initSkillsBlocks();
     initContactForms();
     initServiceOfferingsFAQ();
+    initTestimonialsBlocks();
 });
