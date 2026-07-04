@@ -294,11 +294,64 @@
 
   &__header-link {
     position: absolute;
-    top: 0; right: 0;
+    top: 0;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
     text-decoration: underline;
+
+    &-icon {
+      display: none;
+      flex-shrink: 0;
+    }
+
+    @media (width < 560px) {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      text-decoration: none;
+
+      @include themify($themes) {
+        background: themed(page-background);
+        color: themed(text-muted);
+      }
+
+      &:hover,
+      &:focus {
+        @include themify($themes) {
+          background: themed(stroke-blue-light);
+          color: themed(text-blue);
+        }
+      }
+
+      &-text {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        border: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+      }
+
+      &-icon {
+        display: block;
+      }
+    }
   }
 
-  &__dates { margin-bottom: .4rem; }
+  &__dates {
+    padding-right: 13rem;
+    margin-bottom: .4rem;
+
+    @media (width < 560px) {
+      padding-right: 4rem;
+    }
+  }
 
   &__title { margin: .2rem 0; }
 
