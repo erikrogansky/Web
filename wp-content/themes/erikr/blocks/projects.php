@@ -89,7 +89,7 @@ class Projects extends Widget_Base {
             'description' => 'Enter chips separated by commas or new lines.',
         ]);
 
-        for ($i = 1; $i <= 4; $i++) {
+        for ($i = 1; $i <= 3; $i++) {
             $project->add_control("link_{$i}_text", [
                 'label' => "Link {$i} Text",
                 'type' => Controls_Manager::TEXT,
@@ -102,7 +102,7 @@ class Projects extends Widget_Base {
                 'label' => "Link {$i} URL",
                 'type' => Controls_Manager::URL,
                 'dynamic' => ['active' => true],
-                'options' => ['url', 'is_external', 'nofollow'],
+                'options' => ['url', 'nofollow'],
                 'placeholder' => home_url('/'),
             ]);
         }
@@ -129,7 +129,7 @@ class Projects extends Widget_Base {
     private function get_links(array $project): array {
         $links = [];
 
-        for ($i = 1; $i <= 4; $i++) {
+        for ($i = 1; $i <= 3; $i++) {
             $text = trim($project["link_{$i}_text"] ?? '');
             $url = $project["link_{$i}_url"]['url'] ?? '';
 
@@ -138,7 +138,6 @@ class Projects extends Widget_Base {
             $links[] = [
                 'text' => $text ?: 'Open project',
                 'url' => $url,
-                'is_external' => !empty($project["link_{$i}_url"]['is_external']),
                 'nofollow' => !empty($project["link_{$i}_url"]['nofollow']),
             ];
         }
@@ -233,8 +232,8 @@ class Projects extends Widget_Base {
                                 <?php if ($links): ?>
                                     <div class="projects-block__links">
                                         <?php foreach ($links as $link_index => $link):
-                                            $target = $link['is_external'] ? ' target="_blank"' : '';
-                                            $rel = trim(($link['is_external'] ? 'noopener' : '') . ' ' . ($link['nofollow'] ? 'nofollow' : ''));
+                                            $target = ' target="_blank"';
+                                            $rel = trim('noopener ' . ($link['nofollow'] ? 'nofollow' : ''));
                                             $rel = $rel ? ' rel="' . esc_attr($rel) . '"' : '';
                                             $btn_class = $link_index === 0 ? 'btn--primary' : 'btn--outline-primary';
                                         ?>
