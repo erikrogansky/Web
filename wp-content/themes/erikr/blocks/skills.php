@@ -288,7 +288,7 @@ class Skills extends Widget_Base {
                         $category = 'others';
                     }
 
-                    $target = $is_external ? ' target="_blank"' : '';
+                    $target = ' target="_blank"';
                     $rel_str = trim(($is_external ? 'noopener' : '') . ' ' . ($nofollow ? 'nofollow' : ''));
                     $rel = $rel_str ? ' rel="' . esc_attr($rel_str) . '"' : '';
 
